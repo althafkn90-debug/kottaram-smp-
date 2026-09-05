@@ -1,309 +1,1662 @@
-<!DOCTYPE html>
+@keyframes rgbBackground {
+    0% {
+        transform: rotate(0deg) scale(1);
+        filter: hue-rotate(0deg);
+    }<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>KOTTARAM SMP | Minecraft Survival Server</title>
-<meta name="description" content="KOTTARAM SMP - Join our Minecraft Survival Multiplayer server.">
+<meta name="description" content="KOTTARAM SMP - The ultimate Minecraft Survival Multiplayer experience.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  font-family:Poppins,sans-serif;color:#fff;background:#050505;
-  overflow-x:hidden;min-height:100vh;
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-body::before{
-  content:"";position:fixed;inset:-50%;z-index:-3;
-  background:
-    radial-gradient(circle at 20% 20%,rgba(255,0,0,.28),transparent 25%),
-    radial-gradient(circle at 80% 30%,rgba(0,255,120,.22),transparent 25%),
-    radial-gradient(circle at 50% 80%,rgba(80,0,255,.28),transparent 30%);
-  animation:rgbMove 10s linear infinite alternate;
+
+html {
+    scroll-behavior: smooth;
 }
-@keyframes rgbMove{
-  0%{transform:rotate(0) scale(1);filter:hue-rotate(0deg)}
-  100%{transform:rotate(8deg) scale(1.2);filter:hue-rotate(360deg)}
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+    background: #030305;
+    overflow-x: hidden;
 }
-body::after{
-  content:"";position:fixed;inset:0;z-index:-2;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:45px 45px;pointer-events:none;
+
+/* =========================================================
+   RGB BACKGROUND
+========================================================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    z-index: -5;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 0, 80, 0.28),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 85% 25%,
+            rgba(0, 255, 200, 0.25),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 85%,
+            rgba(110, 0, 255, 0.28),
+            transparent 30%
+        );
+
+    animation: rgbBackground 12s linear infinite alternate;
 }
-nav{
-  position:fixed;top:0;left:0;width:100%;padding:18px 7%;
-  display:flex;justify-content:space-between;align-items:center;z-index:1000;
-  background:rgba(0,0,0,.6);backdrop-filter:blur(15px);
-  border-bottom:1px solid rgba(255,255,255,.08);
+
+
+    50% {
+        transform: rotate(5deg) scale(1.1);
+        filter: hue-rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(10deg) scale(1.2);
+        filter: hue-rotate(360deg);
+    }
 }
-.logo{
-  font-family:Orbitron,sans-serif;font-size:22px;font-weight:900;letter-spacing:2px;
-  background:linear-gradient(90deg,#ff0000,#ff00cc,#00ffff,#00ff66,#ffff00,#ff0000);
-  background-size:400%;-webkit-background-clip:text;background-clip:text;
-  color:transparent;animation:rainbow 6s linear infinite;
+
+/* =========================================================
+   GRID
+========================================================= */
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 50px 50px;
 }
-@keyframes rainbow{to{background-position:400%}}
-nav a{color:#fff;text-decoration:none;margin-left:25px;font-weight:600;transition:.3s}
-nav a:hover{color:#00ffcc;text-shadow:0 0 15px #00ffcc}
-.hero{
-  min-height:100vh;display:flex;justify-content:center;align-items:center;
-  text-align:center;padding:120px 20px 60px;position:relative;
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+#particles {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    overflow: hidden;
 }
-.hero-content{max-width:900px}
-.badge{
-  display:inline-block;padding:8px 18px;border:1px solid rgba(255,255,255,.2);
-  border-radius:50px;background:rgba(255,255,255,.06);margin-bottom:20px;font-size:14px;
+
+.particle {
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 8px #00ffff,
+        0 0 18px #00ffff;
+
+    animation: particleMove linear infinite;
 }
-.hero h1{
-  font-family:Orbitron,sans-serif;font-size:clamp(45px,9vw,100px);
-  font-weight:900;line-height:1;text-transform:uppercase;
-  background:linear-gradient(90deg,#ff0000,#ff7b00,#ffee00,#00ff66,#00eaff,#7b00ff,#ff00c8,#ff0000);
-  background-size:500%;-webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:rainbow 8s linear infinite;
-  filter:drop-shadow(0 0 25px rgba(255,0,200,.3));
+
+@keyframes particleMove {
+
+    0% {
+        transform:
+            translateY(110vh)
+            translateX(0)
+            scale(0.5);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(-10vh)
+            translateX(100px)
+            scale(1.2);
+
+        opacity: 0;
+    }
 }
-.hero p{margin:25px auto;max-width:650px;color:#cfcfcf;font-size:18px}
-.buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:15px;margin-top:30px}
-.btn{
-  border:0;padding:14px 25px;border-radius:12px;color:#fff;text-decoration:none;
-  font-weight:700;cursor:pointer;background:linear-gradient(135deg,#ff0055,#7b00ff);
-  box-shadow:0 0 25px rgba(150,0,255,.35);transition:.3s;font-family:inherit;
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+nav {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 18px 7%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    z-index: 1000;
+
+    background: rgba(0,0,0,0.65);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.08);
 }
-.btn:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 0 35px rgba(0,255,255,.5)}
-.btn.discord{background:linear-gradient(135deg,#5865F2,#7289da)}
-.server-card{
-  margin:45px auto 0;max-width:650px;padding:25px;border-radius:20px;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
-  backdrop-filter:blur(15px);box-shadow:0 0 50px rgba(0,0,0,.4);
+
+.logo {
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 21px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff0000,
+            #ff00cc,
+            #00ffff,
+            #00ff66,
+            #ffff00,
+            #ff0000
+        );
+
+    background-size: 400%;
+
+    -webkit-background-clip: text;
+    color: transparent;
+
+    animation: rainbow 6s linear infinite;
 }
-.server-title{color:#aaa;font-size:13px;text-transform:uppercase;letter-spacing:2px}
-.server-ip{
-  margin:10px 0 18px;font-family:monospace;font-size:22px;color:#00ffcc;
-  text-shadow:0 0 15px rgba(0,255,200,.5);
+
+@keyframes rainbow {
+    to {
+        background-position: 400%;
+    }
 }
-.status{margin-top:15px;color:#aaa;font-size:14px}
-.status-dot{
-  display:inline-block;width:9px;height:9px;border-radius:50%;
-  background:#00ff66;box-shadow:0 0 10px #00ff66;margin-right:7px;
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
 }
-section{padding:100px 7%}
-.section-title{text-align:center;margin-bottom:50px}
-.section-title h2{font-family:Orbitron,sans-serif;font-size:35px}
-.section-title p{color:#aaa;margin-top:10px}
-.cards{
-  max-width:1100px;margin:auto;display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;
+
+.nav-links a {
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition: 0.3s;
 }
-.card{
-  padding:30px;border-radius:18px;background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);transition:.3s;
+
+.nav-links a:hover {
+    color: #00ffff;
+
+    text-shadow:
+        0 0 10px #00ffff,
+        0 0 25px #00ffff;
 }
-.card:hover{
-  transform:translateY(-8px);border-color:rgba(0,255,220,.5);
-  box-shadow:0 15px 40px rgba(0,255,220,.12);
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding:
+        130px 20px
+        80px;
+
+    position: relative;
 }
-.card .icon{font-size:40px;margin-bottom:15px}
-.card h3{margin-bottom:10px}
-.card p{color:#aaa;line-height:1.7}
-.rules{max-width:800px;margin:auto}
-.rule{
-  margin-bottom:15px;padding:20px;border-radius:12px;background:rgba(255,255,255,.06);
-  border-left:4px solid #00ffcc;
+
+.hero-content {
+    width: 100%;
+    max-width: 1000px;
 }
-.rule strong{color:#00ffcc}
-.rank{text-align:center}
-.rank-name{
-  display:inline-block;padding:8px 16px;border-radius:8px;font-weight:800;margin-bottom:12px;
+
+.badge {
+    display: inline-block;
+
+    padding: 10px 20px;
+
+    border:
+        1px solid rgba(255,255,255,0.2);
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,255,255,0.06);
+
+    color: #ddd;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 0 25px rgba(0,255,255,0.08);
 }
-.owner{color:#ff3030;text-shadow:0 0 12px #ff3030}
-.admin{color:#00aaff;text-shadow:0 0 12px #00aaff}
-.mod{color:#00ff55;text-shadow:0 0 12px #00ff55}
-.vip{color:#ffd700;text-shadow:0 0 12px #ffd700}
-.member{color:#fff}
-footer{
-  padding:35px 20px;text-align:center;color:#888;border-top:1px solid rgba(255,255,255,.08);
-  background:rgba(0,0,0,.4)
+
+.hero h1 {
+    font-family: "Orbitron", sans-serif;
+
+    margin-top: 25px;
+
+    font-size:
+        clamp(42px, 9vw, 105px);
+
+    font-weight: 900;
+
+    line-height: 1;
+
+    text-transform: uppercase;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff0000,
+            #ff7700,
+            #ffee00,
+            #00ff66,
+            #00eaff,
+            #7b00ff,
+            #ff00cc,
+            #ff0000
+        );
+
+    background-size: 500%;
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    animation:
+        rainbow 8s linear infinite;
+
+    filter:
+        drop-shadow(
+            0 0 25px
+            rgba(255,0,200,0.35)
+        );
 }
-footer strong{color:#fff}
-@media(max-width:700px){
-  nav{padding:15px 5%}
-  nav .links{display:none}
-  section{padding:75px 5%}
-  .hero p{font-size:15px}
-  .server-ip{font-size:17px}
+
+.hero-subtitle {
+    max-width: 720px;
+
+    margin:
+        30px auto 0;
+
+    color: #c9c9d3;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.buttons {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin-top: 32px;
+}
+
+.btn {
+    display: inline-flex;
+
+    justify-content: center;
+    align-items: center;
+
+    min-width: 180px;
+
+    padding:
+        15px 25px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff0055,
+            #7b00ff,
+            #00c8ff
+        );
+
+    box-shadow:
+        0 0 25px
+        rgba(120,0,255,0.35);
+
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform:
+        translateY(-4px)
+        scale(1.03);
+
+    box-shadow:
+        0 0 40px
+        rgba(0,255,255,0.55);
+}
+
+.btn.discord {
+    background:
+        linear-gradient(
+            135deg,
+            #5865f2,
+            #7289da
+        );
+}
+
+/* =========================================================
+   SERVER CARD
+========================================================= */
+
+.server-card {
+    max-width: 720px;
+
+    margin:
+        50px auto 0;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    border:
+        1px solid rgba(255,255,255,0.14);
+
+    backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,0.45);
+}
+
+.server-title {
+    color: #999;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 3px;
+}
+
+.server-ip {
+    margin:
+        12px 0 22px;
+
+    font-family: monospace;
+
+    font-size:
+        clamp(18px, 4vw, 27px);
+
+    font-weight: 800;
+
+    color: #00ffcc;
+
+    text-shadow:
+        0 0 15px
+        rgba(0,255,200,0.6);
+}
+
+.server-info {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 18px;
+
+    margin-top: 25px;
+}
+
+.info-box {
+    min-width: 170px;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(0,0,0,0.3);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+}
+
+.info-label {
+    display: block;
+
+    color: #888;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.info-value {
+    display: block;
+
+    margin-top: 5px;
+
+    font-weight: 800;
+
+    font-size: 16px;
+}
+
+.online {
+    color: #00ff66;
+
+    text-shadow:
+        0 0 12px #00ff66;
+}
+
+.offline {
+    color: #ff3030;
+
+    text-shadow:
+        0 0 12px #ff3030;
+}
+
+.checking {
+    color: #ffee00;
+
+    text-shadow:
+        0 0 12px #ffee00;
+}
+
+/* =========================================================
+   SECTION
+========================================================= */
+
+section {
+    padding:
+        110px 7%;
+}
+
+.section-title {
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+.section-title h2 {
+    font-family: "Orbitron", sans-serif;
+
+    font-size:
+        clamp(27px, 5vw, 42px);
+
+    font-weight: 900;
+}
+
+.section-title p {
+    margin-top: 12px;
+
+    color: #999;
+
+    font-size: 15px;
+}
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.cards {
+    max-width: 1150px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(230px, 1fr)
+        );
+
+    gap: 22px;
+}
+
+.card {
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.08),
+            rgba(255,255,255,0.025)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.11);
+
+    backdrop-filter:
+        blur(15px);
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform:
+        translateY(-8px);
+
+    border-color:
+        rgba(0,255,220,0.55);
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,255,220,0.12);
+}
+
+.card-icon {
+    font-size: 42px;
+
+    margin-bottom: 18px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+
+    font-size: 20px;
+}
+
+.card p {
+    color: #aaa;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}
+
+/* =========================================================
+   RULES
+========================================================= */
+
+.rules {
+    max-width: 850px;
+
+    margin: auto;
+}
+
+.rule {
+    margin-bottom: 16px;
+
+    padding: 22px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(255,255,255,0.055);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    border-left:
+        4px solid #00ffcc;
+
+    transition: 0.3s;
+}
+
+.rule:hover {
+    transform:
+        translateX(6px);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,255,220,0.08);
+}
+
+.rule strong {
+    color: #00ffcc;
+}
+
+.rule span {
+    color: #aaa;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+/* =========================================================
+   STAFF
+========================================================= */
+
+.rank-card {
+    text-align: center;
+}
+
+.rank-icon {
+    font-size: 45px;
+
+    margin-bottom: 15px;
+}
+
+.rank-name {
+    display: inline-block;
+
+    padding:
+        8px 18px;
+
+    border-radius: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 13px;
+}
+
+.owner {
+    color: #ff3030;
+
+    text-shadow:
+        0 0 15px #ff3030;
+}
+
+.admin {
+    color: #ffe600;
+
+    text-shadow:
+        0 0 15px #ffe600;
+}
+
+.mod {
+    color: #00ff55;
+
+    text-shadow:
+        0 0 15px #00ff55;
+}
+
+.vip {
+    color: #c45cff;
+
+    text-shadow:
+        0 0 15px #c45cff;
+}
+
+.member {
+    color: #00dfff;
+
+    text-shadow:
+        0 0 15px #00dfff;
+}
+
+/* =========================================================
+   DISCORD
+========================================================= */
+
+.discord-section {
+    text-align: center;
+
+    max-width: 900px;
+
+    margin: auto;
+
+    padding: 60px 30px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(88,101,242,0.12),
+            rgba(123,0,255,0.10)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.1);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding:
+        40px 20px;
+
+    text-align: center;
+
+    color: #777;
+
+    border-top:
+        1px solid rgba(255,255,255,0.08);
+
+    background:
+        rgba(0,0,0,0.5);
+}
+
+footer strong {
+    color: white;
+}
+
+footer a {
+    color: #00eaff;
+
+    text-decoration: none;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width: 750px) {
+
+    nav {
+        padding:
+            15px 5%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        padding:
+            120px 18px 70px;
+    }
+
+    .hero-subtitle {
+        font-size: 15px;
+    }
+
+    section {
+        padding:
+            80px 5%;
+    }
+
+    .server-card {
+        padding: 22px 15px;
+    }
+
+    .server-info {
+        flex-direction: column;
+    }
+
+    .info-box {
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- =====================================================
+     PARTICLES
+===================================================== -->
+
+<div id="particles"></div>
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
 <nav>
-  <div class="logo">KOTTARAM SMP</div>
-  <div class="links">
-    <a href="#home">Home</a>
-    <a href="#features">Features</a>
-    <a href="#rules">Rules</a>
-    <a href="#staff">Staff</a>
-    <a href="#discord">Discord</a>
-  </div>
+
+    <div class="logo">
+        KOTTARAM SMP
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#home">Home</a>
+
+        <a href="#features">Features</a>
+
+        <a href="#rules">Rules</a>
+
+        <a href="#staff">Staff</a>
+
+        <a href="#discord">Discord</a>
+
+    </div>
+
 </nav>
 
+<!-- =====================================================
+     HERO
+===================================================== -->
+
 <header class="hero" id="home">
-  <div class="hero-content">
-    <div class="badge">⛏️ MINECRAFT SURVIVAL MULTIPLAYER</div>
-    <h1>KOTTARAM SMP</h1>
-    <p>
-      Build your kingdom. Make friends. Explore the world.
-      Start your ultimate Minecraft survival adventure today!
-    </p>
 
-    <div class="buttons">
-      <a class="btn" href="#server">🎮 JOIN SERVER</a>
-      <a class="btn discord" href="https://discord.gg/A4PN6NmHH" target="_blank" rel="noopener">
-        💬 JOIN DISCORD
-      </a>
+    <div class="hero-content">
+
+        <div class="badge">
+            ⛏️ MINECRAFT SURVIVAL MULTIPLAYER
+        </div>
+
+        <h1>
+            KOTTARAM SMP
+        </h1>
+
+        <p class="hero-subtitle">
+            Build your kingdom. Make friends.
+            Explore the world and create your own story.
+            Join the ultimate KOTTARAM SMP adventure!
+        </p>
+
+        <div class="buttons">
+
+            <a
+                class="btn"
+                href="#server"
+            >
+                🎮 JOIN SERVER
+            </a>
+
+            <a
+                class="btn discord"
+                href="https://discord.gg/A4PN6NmHH"
+                target="_blank"
+                rel="noopener"
+            >
+                💬 JOIN DISCORD
+            </a>
+
+        </div>
+
+        <!-- SERVER -->
+
+        <div
+            class="server-card"
+            id="server"
+        >
+
+            <div class="server-title">
+                Minecraft Server IP
+            </div>
+
+            <div
+                class="server-ip"
+                id="serverIP"
+            >
+                mc.hivemc.fun:25582
+            </div>
+
+            <button
+                class="btn"
+                onclick="copyIP()"
+            >
+                📋 COPY SERVER IP
+            </button>
+
+            <div class="server-info">
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        Server Status
+                    </span>
+
+                    <span
+                        id="serverStatus"
+                        class="info-value checking"
+                    >
+                        🟡 CHECKING...
+                    </span>
+
+                </div>
+
+                <div class="info-box">
+
+                    <span class="info-label">
+                        Players Online
+                    </span>
+
+                    <span
+                        id="players"
+                        class="info-value"
+                    >
+                        👥 —
+                    </span>
+
+                </div>
+
+            </div>
+
+            <p
+                id="copyMessage"
+                style="
+                    display:none;
+                    color:#00ffcc;
+                    margin-top:18px;
+                    font-weight:700;
+                "
+            >
+                ✅ Server IP copied!
+            </p>
+
+        </div>
+
     </div>
 
-    <div class="server-card" id="server">
-      <div class="server-title">Minecraft Server IP</div>
-      <div class="server-ip" id="serverIP">mc.hivemc.fun:25582</div>
-      <button class="btn" type="button" onclick="copyIP()">📋 COPY SERVER IP</button>
-      <div class="status"><span class="status-dot"></span>Server address ready to connect</div>
-      <p id="copyMessage" style="display:none;color:#00ffcc;margin-top:15px;">✅ Server IP copied!</p>
-    </div>
-  </div>
 </header>
 
-<section id="features">
-  <div class="section-title">
-    <h2>⚡ SERVER FEATURES</h2>
-    <p>Everything you need for an amazing SMP experience.</p>
-  </div>
+<!-- =====================================================
+     FEATURES
+===================================================== -->
 
-  <div class="cards">
-    <div class="card">
-      <div class="icon">🌎</div>
-      <h3>Survival World</h3>
-      <p>Explore, build and survive in a unique Minecraft world.</p>
+<section id="features">
+
+    <div class="section-title">
+
+        <h2>
+            ⚡ SERVER FEATURES
+        </h2>
+
+        <p>
+            Everything you need for an amazing SMP experience.
+        </p>
+
     </div>
-    <div class="card">
-      <div class="icon">🛡️</div>
-      <h3>No Grief</h3>
-      <p>Your builds deserve protection. Respect other players and their creations.</p>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-icon">
+                🌎
+            </div>
+
+            <h3>
+                Survival World
+            </h3>
+
+            <p>
+                Explore a massive Minecraft world,
+                collect resources, build your base
+                and create your own adventure.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">
+                🛡️
+            </div>
+
+            <h3>
+                No Griefing
+            </h3>
+
+            <p>
+                Protect your builds and respect
+                other players and their creations.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">
+                ⚔️
+            </div>
+
+            <h3>
+                Adventure
+            </h3>
+
+            <p>
+                Explore dangerous locations,
+                fight mobs and become one of
+                the strongest players.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">
+                💎
+            </div>
+
+            <h3>
+                Economy
+            </h3>
+
+            <p>
+                Trade items, build your wealth
+                and become a Minecraft legend.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">
+                🎁
+            </div>
+
+            <h3>
+                Events
+            </h3>
+
+            <p>
+                Participate in community events,
+                challenges and special activities.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="card-icon">
+                👥
+            </div>
+
+            <h3>
+                Community
+            </h3>
+
+            <p>
+                Meet new players, create teams
+                and enjoy Minecraft together.
+            </p>
+
+        </div>
+
     </div>
-    <div class="card">
-      <div class="icon">⚔️</div>
-      <h3>Community</h3>
-      <p>Meet other players, create teams and enjoy the SMP together.</p>
-    </div>
-    <div class="card">
-      <div class="icon">💎</div>
-      <h3>Economy</h3>
-      <p>Trade items, build your wealth and become a server legend.</p>
-    </div>
-  </div>
+
 </section>
+
+<!-- =====================================================
+     RULES
+===================================================== -->
 
 <section id="rules">
-  <div class="section-title">
-    <h2>📜 SERVER RULES</h2>
-    <p>Keep KOTTARAM SMP fun and friendly.</p>
-  </div>
 
-  <div class="rules">
-    <div class="rule"><strong>01 — No Griefing</strong><br>Do not destroy or damage another player's builds.</div>
-    <div class="rule"><strong>02 — No Cheating</strong><br>Hacks, unfair clients and exploits are not allowed.</div>
-    <div class="rule"><strong>03 — Respect Players</strong><br>No harassment, bullying or toxic behavior.</div>
-    <div class="rule"><strong>04 — No Spam</strong><br>Keep chat clean and avoid unnecessary spam.</div>
-    <div class="rule"><strong>05 — Have Fun</strong><br>Enjoy the server and help make the community better.</div>
-  </div>
+    <div class="section-title">
+
+        <h2>
+            📜 SERVER RULES
+        </h2>
+
+        <p>
+            Keep KOTTARAM SMP fun and friendly.
+        </p>
+
+    </div>
+
+    <div class="rules">
+
+        <div class="rule">
+
+            <strong>
+                01 — NO GRIEFING
+            </strong>
+
+            <br>
+
+            <span>
+                Do not destroy or damage another
+                player's builds.
+            </span>
+
+        </div>
+
+        <div class="rule">
+
+            <strong>
+                02 — NO CHEATING
+            </strong>
+
+            <br>
+
+            <span>
+                Hacks, unfair clients and exploits
+                are not allowed.
+            </span>
+
+        </div>
+
+        <div class="rule">
+
+            <strong>
+                03 — RESPECT PLAYERS
+            </strong>
+
+            <br>
+
+            <span>
+                No harassment, bullying or toxic behavior.
+            </span>
+
+        </div>
+
+        <div class="rule">
+
+            <strong>
+                04 — NO SPAM
+            </strong>
+
+            <br>
+
+            <span>
+                Keep chat clean and avoid unnecessary spam.
+            </span>
+
+        </div>
+
+        <div class="rule">
+
+            <strong>
+                05 — NO ADVERTISING
+            </strong>
+
+            <br>
+
+            <span>
+                Do not advertise other servers without
+                staff permission.
+            </span>
+
+        </div>
+
+        <div class="rule">
+
+            <strong>
+                06 — HAVE FUN
+            </strong>
+
+            <br>
+
+            <span>
+                Enjoy the server and help make
+                KOTTARAM SMP a great community.
+            </span>
+
+        </div>
+
+    </div>
+
 </section>
+
+<!-- =====================================================
+     STAFF
+===================================================== -->
 
 <section id="staff">
-  <div class="section-title">
-    <h2>👑 STAFF & RANKS</h2>
-    <p>KOTTARAM SMP community ranks.</p>
-  </div>
 
-  <div class="cards">
-    <div class="card rank">
-      <div class="icon">👑</div>
-      <div class="rank-name owner">OWNER</div>
-      <p>Server Owner</p>
+    <div class="section-title">
+
+        <h2>
+            👑 STAFF RANKS
+        </h2>
+
+        <p>
+            KOTTARAM SMP rank system.
+        </p>
+
     </div>
-    <div class="card rank">
-      <div class="icon">🛡️</div>
-      <div class="rank-name admin">ADMIN</div>
-      <p>Server Administrator</p>
+
+    <div class="cards">
+
+        <div class="card rank-card">
+
+            <div class="rank-icon">
+                👑
+            </div>
+
+            <div class="rank-name owner">
+                OWNER
+            </div>
+
+            <p>
+                Server Owner
+            </p>
+
+        </div>
+
+        <div class="card rank-card">
+
+            <div class="rank-icon">
+                🛡️
+            </div>
+
+            <div class="rank-name admin">
+                ADMIN
+            </div>
+
+            <p>
+                Server Administrator
+            </p>
+
+        </div>
+
+        <div class="card rank-card">
+
+            <div class="rank-icon">
+                🔨
+            </div>
+
+            <div class="rank-name mod">
+                MOD
+            </div>
+
+            <p>
+                Server Moderator
+            </p>
+
+        </div>
+
+        <div class="card rank-card">
+
+            <div class="rank-icon">
+                💜
+            </div>
+
+            <div class="rank-name vip">
+                VIP
+            </div>
+
+            <p>
+                VIP Player
+            </p>
+
+        </div>
+
+        <div class="card rank-card">
+
+            <div class="rank-icon">
+                ⭐
+            </div>
+
+            <div class="rank-name member">
+                MEMBER
+            </div>
+
+            <p>
+                Community Member
+            </p>
+
+        </div>
+
     </div>
-    <div class="card rank">
-      <div class="icon">🔨</div>
-      <div class="rank-name mod">MOD</div>
-      <p>Server Moderator</p>
-    </div>
-    <div class="card rank">
-      <div class="icon">👑</div>
-      <div class="rank-name vip">VIP</div>
-      <p>VIP Member</p>
-    </div>
-    <div class="card rank">
-      <div class="icon">⭐</div>
-      <div class="rank-name member">MEMBER</div>
-      <p>Community Member</p>
-    </div>
-  </div>
+
 </section>
+
+<!-- =====================================================
+     DISCORD
+===================================================== -->
 
 <section id="discord">
-  <div class="section-title">
-    <h2>💬 JOIN OUR DISCORD</h2>
-    <p>Get announcements, updates, support and chat with the community.</p>
-    <div class="buttons">
-      <a class="btn discord" href="https://discord.gg/A4PN6NmHH" target="_blank" rel="noopener">
-        💬 JOIN KOTTARAM DISCORD
-      </a>
+
+    <div class="discord-section">
+
+        <div class="section-title">
+
+            <h2>
+                💬 JOIN KOTTARAM DISCORD
+            </h2>
+
+            <p>
+                Get announcements, updates, support,
+                events and chat with the community.
+            </p>
+
+            <div class="buttons">
+
+                <a
+                    class="btn discord"
+                    href="https://discord.gg/A4PN6NmHH"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    💬 JOIN DISCORD
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
-  </div>
+
 </section>
 
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer>
-  <p>© 2026 <strong>KOTTARAM SMP</strong>. All rights reserved.</p>
-  <p style="margin-top:8px;">Not affiliated with Mojang or Microsoft.</p>
+
+    <p>
+        © 2026
+        <strong>KOTTARAM SMP</strong>.
+        All rights reserved.
+    </p>
+
+    <p style="margin-top:8px;">
+        Minecraft server:
+        <a href="#server">
+            mc.hivemc.fun:25582
+        </a>
+    </p>
+
+    <p style="margin-top:8px;">
+        Not affiliated with Mojang or Microsoft.
+    </p>
+
 </footer>
 
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script>
+
+/* ========================================================
+   SERVER
+======================================================== */
+
+const SERVER_IP =
+    "mc.hivemc.fun:25582";
+
+
+/* ========================================================
+   COPY IP
+======================================================== */
+
 function copyIP() {
-  const ip = document.getElementById("serverIP").textContent.trim();
-  const message = document.getElementById("copyMessage");
 
-  if (navigator.clipboard && window.isSecureContext) {
-    navigator.clipboard.writeText(ip).then(showCopied).catch(() => fallbackCopy(ip));
-  } else {
-    fallbackCopy(ip);
-  }
+    const ip =
+        document
+        .getElementById("serverIP")
+        .innerText
+        .trim();
 
-  function showCopied() {
-    message.style.display = "block";
-    setTimeout(() => message.style.display = "none", 2500);
-  }
+    const message =
+        document
+        .getElementById("copyMessage");
 
-  function fallbackCopy(text) {
-    const input = document.createElement("textarea");
-    input.value = text;
-    document.body.appendChild(input);
-    input.select();
-    document.execCommand("copy");
-    input.remove();
-    showCopied();
-  }
+    if (
+        navigator.clipboard &&
+        window.isSecureContext
+    ) {
+
+        navigator.clipboard
+            .writeText(ip)
+            .then(() => {
+
+                message.style.display =
+                    "block";
+
+                setTimeout(() => {
+
+                    message.style.display =
+                        "none";
+
+                }, 2500);
+
+            })
+            .catch(() => {
+
+                alert(
+                    "Server IP: " + ip
+                );
+
+            });
+
+    } else {
+
+        const textarea =
+            document.createElement("textarea");
+
+        textarea.value = ip;
+
+        document.body.appendChild(
+            textarea
+        );
+
+        textarea.select();
+
+        document.execCommand("copy");
+
+        textarea.remove();
+
+        message.style.display =
+            "block";
+
+        setTimeout(() => {
+
+            message.style.display =
+                "none";
+
+        }, 2500);
+    }
 }
-</script>
 
-</body>
-</html>
+
+/* ========================================================
+   LIVE SERVER STATUS
+======================================================== */
+
+async function checkServer() {
+
+    const status =
+        document
+        .getElementById("serverStatus");
+
+    const players =
+        document
+        .getElementById("players");
+
+    status.className =
+        "info-value checking";
+
+    status.innerHTML =
+        "🟡 CHECKING...";
+
+    try {
+
+        const response =
+            await fetch(
+                "https://api.mcsrvstat.us/3/" +
+                encodeURIComponent(SERVER_IP),
+                {
+                    cache: "no-store"
+                }
+            );
+
+        if (!response.ok) {
+            throw new Error(
+                "Status API error"
+            );
+        }
+
+        const data =
+            await response.json();
+
+        if (data.online) {
+
+            status.className =
+                "info-value online";
+
+            status.innerHTML =
+                "🟢 ONLINE";
+
+            players.innerHTML =
+                "👥 " +
+                (
+                    data.players &&
+                    data.players.online !== undefined
+                    ? data.players.online
+                    : 0
+                );
+
+        } else {
+
+            status.className =
+                "info-value offline";
+
+            status.innerHTML =
+                "🔴 OFFLINE";
+
+            players.innerHTML =
+                "👥 0";
+        }
+
+    } catch (error) {
+
+        status.className =
+            "info-value checking";
+
+        status.innerHTML =
+            "🟡 UNAVAILABLE";
+
+        players.innerHTML =
+            "👥 —";
+    }
+}
+
+
+/* Check server immediately */
+checkServer();
+
+
+/* Update every 30 seconds */
+setInterval(
+    checkServer,
+    30000
+);
+
+
+/* ========================================================
+   CREATE RGB PARTICLES
+======================================================== */
+
+const particleContainer =
+    document.getElementById(
+        "particles"
+    );
+
+for (
+    let i = 0;
+    i < 60;
+    i++
+) {
+
+    const particle =
+        document.createElement(
+            "div"
+        );
+
+    particle.className =
+        "particle";
+
+    particle.style.left =
+        Math.random() * 100 + "%";
+
+    particle.style.animationDuration =
+        (7 + Math.random() * 14) + "s";
+
+    particle.style.animationDelay =
+        (-Math.random() * 20) + "s";
+
+    particle.style.opacity =
+        Math.random();
+
+    particleContainer.appendChild(
+        particle
+    );
+}
+
+</script>
