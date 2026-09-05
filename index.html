@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOTTARAM SMP | Minecraft Survival Server</title>
+<meta name="description" content="KOTTARAM SMP - Join our Minecraft Survival Multiplayer server.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Poppins,sans-serif;color:#fff;background:#050505;
+  overflow-x:hidden;min-height:100vh;
+}
+body::before{
+  content:"";position:fixed;inset:-50%;z-index:-3;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,0,0,.28),transparent 25%),
+    radial-gradient(circle at 80% 30%,rgba(0,255,120,.22),transparent 25%),
+    radial-gradient(circle at 50% 80%,rgba(80,0,255,.28),transparent 30%);
+  animation:rgbMove 10s linear infinite alternate;
+}
+@keyframes rgbMove{
+  0%{transform:rotate(0) scale(1);filter:hue-rotate(0deg)}
+  100%{transform:rotate(8deg) scale(1.2);filter:hue-rotate(360deg)}
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:45px 45px;pointer-events:none;
+}
+nav{
+  position:fixed;top:0;left:0;width:100%;padding:18px 7%;
+  display:flex;justify-content:space-between;align-items:center;z-index:1000;
+  background:rgba(0,0,0,.6);backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.logo{
+  font-family:Orbitron,sans-serif;font-size:22px;font-weight:900;letter-spacing:2px;
+  background:linear-gradient(90deg,#ff0000,#ff00cc,#00ffff,#00ff66,#ffff00,#ff0000);
+  background-size:400%;-webkit-background-clip:text;background-clip:text;
+  color:transparent;animation:rainbow 6s linear infinite;
+}
+@keyframes rainbow{to{background-position:400%}}
+nav a{color:#fff;text-decoration:none;margin-left:25px;font-weight:600;transition:.3s}
+nav a:hover{color:#00ffcc;text-shadow:0 0 15px #00ffcc}
+.hero{
+  min-height:100vh;display:flex;justify-content:center;align-items:center;
+  text-align:center;padding:120px 20px 60px;position:relative;
+}
+.hero-content{max-width:900px}
+.badge{
+  display:inline-block;padding:8px 18px;border:1px solid rgba(255,255,255,.2);
+  border-radius:50px;background:rgba(255,255,255,.06);margin-bottom:20px;font-size:14px;
+}
+.hero h1{
+  font-family:Orbitron,sans-serif;font-size:clamp(45px,9vw,100px);
+  font-weight:900;line-height:1;text-transform:uppercase;
+  background:linear-gradient(90deg,#ff0000,#ff7b00,#ffee00,#00ff66,#00eaff,#7b00ff,#ff00c8,#ff0000);
+  background-size:500%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:rainbow 8s linear infinite;
+  filter:drop-shadow(0 0 25px rgba(255,0,200,.3));
+}
+.hero p{margin:25px auto;max-width:650px;color:#cfcfcf;font-size:18px}
+.buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:15px;margin-top:30px}
+.btn{
+  border:0;padding:14px 25px;border-radius:12px;color:#fff;text-decoration:none;
+  font-weight:700;cursor:pointer;background:linear-gradient(135deg,#ff0055,#7b00ff);
+  box-shadow:0 0 25px rgba(150,0,255,.35);transition:.3s;font-family:inherit;
+}
+.btn:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 0 35px rgba(0,255,255,.5)}
+.btn.discord{background:linear-gradient(135deg,#5865F2,#7289da)}
+.server-card{
+  margin:45px auto 0;max-width:650px;padding:25px;border-radius:20px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(15px);box-shadow:0 0 50px rgba(0,0,0,.4);
+}
+.server-title{color:#aaa;font-size:13px;text-transform:uppercase;letter-spacing:2px}
+.server-ip{
+  margin:10px 0 18px;font-family:monospace;font-size:22px;color:#00ffcc;
+  text-shadow:0 0 15px rgba(0,255,200,.5);
+}
+.status{margin-top:15px;color:#aaa;font-size:14px}
+.status-dot{
+  display:inline-block;width:9px;height:9px;border-radius:50%;
+  background:#00ff66;box-shadow:0 0 10px #00ff66;margin-right:7px;
+}
+section{padding:100px 7%}
+.section-title{text-align:center;margin-bottom:50px}
+.section-title h2{font-family:Orbitron,sans-serif;font-size:35px}
+.section-title p{color:#aaa;margin-top:10px}
+.cards{
+  max-width:1100px;margin:auto;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;
+}
+.card{
+  padding:30px;border-radius:18px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);transition:.3s;
+}
+.card:hover{
+  transform:translateY(-8px);border-color:rgba(0,255,220,.5);
+  box-shadow:0 15px 40px rgba(0,255,220,.12);
+}
+.card .icon{font-size:40px;margin-bottom:15px}
+.card h3{margin-bottom:10px}
+.card p{color:#aaa;line-height:1.7}
+.rules{max-width:800px;margin:auto}
+.rule{
+  margin-bottom:15px;padding:20px;border-radius:12px;background:rgba(255,255,255,.06);
+  border-left:4px solid #00ffcc;
+}
+.rule strong{color:#00ffcc}
+.rank{text-align:center}
+.rank-name{
+  display:inline-block;padding:8px 16px;border-radius:8px;font-weight:800;margin-bottom:12px;
+}
+.owner{color:#ff3030;text-shadow:0 0 12px #ff3030}
+.admin{color:#00aaff;text-shadow:0 0 12px #00aaff}
+.mod{color:#00ff55;text-shadow:0 0 12px #00ff55}
+.vip{color:#ffd700;text-shadow:0 0 12px #ffd700}
+.member{color:#fff}
+footer{
+  padding:35px 20px;text-align:center;color:#888;border-top:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.4)
+}
+footer strong{color:#fff}
+@media(max-width:700px){
+  nav{padding:15px 5%}
+  nav .links{display:none}
+  section{padding:75px 5%}
+  .hero p{font-size:15px}
+  .server-ip{font-size:17px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">KOTTARAM SMP</div>
+  <div class="links">
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#rules">Rules</a>
+    <a href="#staff">Staff</a>
+    <a href="#discord">Discord</a>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-content">
+    <div class="badge">⛏️ MINECRAFT SURVIVAL MULTIPLAYER</div>
+    <h1>KOTTARAM SMP</h1>
+    <p>
+      Build your kingdom. Make friends. Explore the world.
+      Start your ultimate Minecraft survival adventure today!
+    </p>
+
+    <div class="buttons">
+      <a class="btn" href="#server">🎮 JOIN SERVER</a>
+      <a class="btn discord" href="https://discord.gg/A4PN6NmHH" target="_blank" rel="noopener">
+        💬 JOIN DISCORD
+      </a>
+    </div>
+
+    <div class="server-card" id="server">
+      <div class="server-title">Minecraft Server IP</div>
+      <div class="server-ip" id="serverIP">mc.hivemc.fun:25582</div>
+      <button class="btn" type="button" onclick="copyIP()">📋 COPY SERVER IP</button>
+      <div class="status"><span class="status-dot"></span>Server address ready to connect</div>
+      <p id="copyMessage" style="display:none;color:#00ffcc;margin-top:15px;">✅ Server IP copied!</p>
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="section-title">
+    <h2>⚡ SERVER FEATURES</h2>
+    <p>Everything you need for an amazing SMP experience.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="icon">🌎</div>
+      <h3>Survival World</h3>
+      <p>Explore, build and survive in a unique Minecraft world.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🛡️</div>
+      <h3>No Grief</h3>
+      <p>Your builds deserve protection. Respect other players and their creations.</p>
+    </div>
+    <div class="card">
+      <div class="icon">⚔️</div>
+      <h3>Community</h3>
+      <p>Meet other players, create teams and enjoy the SMP together.</p>
+    </div>
+    <div class="card">
+      <div class="icon">💎</div>
+      <h3>Economy</h3>
+      <p>Trade items, build your wealth and become a server legend.</p>
+    </div>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="section-title">
+    <h2>📜 SERVER RULES</h2>
+    <p>Keep KOTTARAM SMP fun and friendly.</p>
+  </div>
+
+  <div class="rules">
+    <div class="rule"><strong>01 — No Griefing</strong><br>Do not destroy or damage another player's builds.</div>
+    <div class="rule"><strong>02 — No Cheating</strong><br>Hacks, unfair clients and exploits are not allowed.</div>
+    <div class="rule"><strong>03 — Respect Players</strong><br>No harassment, bullying or toxic behavior.</div>
+    <div class="rule"><strong>04 — No Spam</strong><br>Keep chat clean and avoid unnecessary spam.</div>
+    <div class="rule"><strong>05 — Have Fun</strong><br>Enjoy the server and help make the community better.</div>
+  </div>
+</section>
+
+<section id="staff">
+  <div class="section-title">
+    <h2>👑 STAFF & RANKS</h2>
+    <p>KOTTARAM SMP community ranks.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card rank">
+      <div class="icon">👑</div>
+      <div class="rank-name owner">OWNER</div>
+      <p>Server Owner</p>
+    </div>
+    <div class="card rank">
+      <div class="icon">🛡️</div>
+      <div class="rank-name admin">ADMIN</div>
+      <p>Server Administrator</p>
+    </div>
+    <div class="card rank">
+      <div class="icon">🔨</div>
+      <div class="rank-name mod">MOD</div>
+      <p>Server Moderator</p>
+    </div>
+    <div class="card rank">
+      <div class="icon">👑</div>
+      <div class="rank-name vip">VIP</div>
+      <p>VIP Member</p>
+    </div>
+    <div class="card rank">
+      <div class="icon">⭐</div>
+      <div class="rank-name member">MEMBER</div>
+      <p>Community Member</p>
+    </div>
+  </div>
+</section>
+
+<section id="discord">
+  <div class="section-title">
+    <h2>💬 JOIN OUR DISCORD</h2>
+    <p>Get announcements, updates, support and chat with the community.</p>
+    <div class="buttons">
+      <a class="btn discord" href="https://discord.gg/A4PN6NmHH" target="_blank" rel="noopener">
+        💬 JOIN KOTTARAM DISCORD
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 <strong>KOTTARAM SMP</strong>. All rights reserved.</p>
+  <p style="margin-top:8px;">Not affiliated with Mojang or Microsoft.</p>
+</footer>
+
+<script>
+function copyIP() {
+  const ip = document.getElementById("serverIP").textContent.trim();
+  const message = document.getElementById("copyMessage");
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(ip).then(showCopied).catch(() => fallbackCopy(ip));
+  } else {
+    fallbackCopy(ip);
+  }
+
+  function showCopied() {
+    message.style.display = "block";
+    setTimeout(() => message.style.display = "none", 2500);
+  }
+
+  function fallbackCopy(text) {
+    const input = document.createElement("textarea");
+    input.value = text;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand("copy");
+    input.remove();
+    showCopied();
+  }
+}
+</script>
+
+</body>
+</html>
