@@ -1,1140 +1,2055 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>KOTTARAM SMP | Minecraft Survival Server</title>
-  <meta name="description" content="KOTTARAM SMP - The ultimate Minecraft Survival Multiplayer experience.">
-  <meta name="theme-color" content="#00ffff">
+<title>BLOODMOON SMP | Minecraft Survival Server</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="description" content="BLOODMOON SMP - The ultimate Minecraft Survival Multiplayer experience.">
+<meta name="theme-color" content="#ff0033">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    html {
-      scroll-behavior: smooth;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    body {
-      font-family: "Poppins", sans-serif;
-      color: #fff;
-      background: #050505;
-      overflow-x: hidden;
-    }
+<style>
 
-    /* =========================
-       RGB BACKGROUND
-    ========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -3;
-      background:
-        radial-gradient(circle at 10% 20%, rgba(255, 0, 70, 0.28), transparent 30%),
-        radial-gradient(circle at 90% 20%, rgba(0, 255, 255, 0.25), transparent 30%),
-        radial-gradient(circle at 50% 90%, rgba(150, 0, 255, 0.25), transparent 35%),
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    color: #ffffff;
+    background: #050000;
+    overflow-x: hidden;
+}
+
+/* =========================
+   BLOODMOON BACKGROUND
+========================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+
+    background:
+        radial-gradient(circle at 50% 15%, rgba(255, 0, 30, 0.30), transparent 25%),
+        radial-gradient(circle at 10% 70%, rgba(120, 0, 20, 0.35), transparent 30%),
+        radial-gradient(circle at 90% 60%, rgba(255, 0, 60, 0.20), transparent 30%),
         linear-gradient(
-          120deg,
-          #ff003c,
-          #ff00cc,
-          #7a00ff,
-          #00eaff,
-          #00ff66,
-          #ffff00,
-          #ff003c
+            135deg,
+            #050000,
+            #170006,
+            #30000d,
+            #080000,
+            #200008
         );
-      background-size: 300% 300%;
-      animation: rgbBackground 15s ease infinite;
-      filter: saturate(1.4);
+
+    background-size: 300% 300%;
+    animation: bloodBackground 15s ease infinite;
+}
+
+@keyframes bloodBackground {
+
+    0% {
+        background-position: 0% 50%;
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-      background-size: 45px 45px;
-      pointer-events: none;
+    50% {
+        background-position: 100% 50%;
     }
 
-    @keyframes rgbBackground {
-      0%   { background-position: 0% 50%; }
-      25%  { background-position: 100% 50%; }
-      50%  { background-position: 100% 100%; }
-      75%  { background-position: 0% 100%; }
-      100% { background-position: 0% 50%; }
+    100% {
+        background-position: 0% 50%;
     }
 
-    /* =========================
-       PARTICLES
-    ========================== */
+}
 
-    #particles {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      overflow: hidden;
-    }
+/* GRID */
 
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: #fff;
-      box-shadow:
-        0 0 8px #fff,
-        0 0 18px #00ffff;
-      opacity: 0.7;
-      animation: floatParticle linear infinite;
-    }
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
 
-    @keyframes floatParticle {
-      from {
-        transform: translateY(110vh);
-      }
+    background-image:
 
-      to {
-        transform: translateY(-20vh);
-      }
-    }
+    linear-gradient(
+        rgba(255,0,0,0.04) 1px,
+        transparent 1px
+    ),
 
-    /* =========================
-       NAVBAR
-    ========================== */
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: 16px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.65);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .logo {
-      font-family: "Orbitron", sans-serif;
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      background: linear-gradient(
+    linear-gradient(
         90deg,
-        #ff003c,
-        #ff00cc,
-        #00ffff,
-        #00ff66,
-        #ffff00
-      );
-      background-size: 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: logoRGB 5s linear infinite;
+        rgba(255,0,0,0.04) 1px,
+        transparent 1px
+    );
+
+    background-size: 45px 45px;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+#particles {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+}
+
+.particle {
+
+    position: absolute;
+
+    background: #ff0033;
+
+    border-radius: 50%;
+
+    box-shadow:
+
+    0 0 10px #ff0033,
+
+    0 0 25px #990000;
+
+    animation: floatParticle linear infinite;
+
+}
+
+@keyframes floatParticle {
+
+    from {
+
+        transform:
+        translateY(110vh)
+        rotate(0deg);
+
     }
 
-    @keyframes logoRGB {
-      0% { background-position: 0%; }
-      100% { background-position: 300%; }
+    to {
+
+        transform:
+        translateY(-20vh)
+        rotate(360deg);
+
     }
+
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+    padding: 16px 6%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: rgba(0,0,0,0.75);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+    1px solid rgba(255,0,40,0.3);
+
+}
+
+.logo {
+
+    font-family:
+    "Orbitron",
+    sans-serif;
+
+    font-size: 22px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    color: #ff0033;
+
+    text-shadow:
+
+    0 0 10px #ff0033,
+
+    0 0 30px #990000;
+
+}
+
+.nav-links {
+
+    display: flex;
+
+    gap: 25px;
+
+    list-style: none;
+
+}
+
+.nav-links a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+
+}
+
+.nav-links a:hover {
+
+    color: #ff0033;
+
+    text-shadow:
+
+    0 0 12px #ff0033;
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    padding:
+    150px 6%
+    80px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+.hero-content {
+
+    max-width: 1000px;
+
+    width: 100%;
+
+}
+
+.bloodmoon {
+
+    width: 140px;
+
+    height: 140px;
+
+    border-radius: 50%;
+
+    margin:
+    0 auto
+    25px;
+
+    background:
+
+    radial-gradient(
+        circle at 35% 35%,
+        #ff4455,
+        #cc0011 45%,
+        #550000 75%
+    );
+
+    box-shadow:
+
+    0 0 30px #ff0033,
+
+    0 0 80px #990000,
+
+    0 0 150px #440000;
+
+    animation:
+    moonPulse
+    3s infinite;
+
+}
+
+@keyframes moonPulse {
+
+    0% {
+
+        transform:
+        scale(1);
+
+    }
+
+    50% {
+
+        transform:
+        scale(1.08);
+
+        box-shadow:
+
+        0 0 50px #ff0033,
+
+        0 0 120px #990000;
+
+    }
+
+    100% {
+
+        transform:
+        scale(1);
+
+    }
+
+}
+
+.badge {
+
+    display: inline-block;
+
+    padding:
+    10px 18px;
+
+    margin-bottom: 25px;
+
+    border:
+    1px solid
+    rgba(255,0,40,0.5);
+
+    border-radius: 999px;
+
+    background:
+    rgba(20,0,0,0.65);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+}
+
+.hero h1 {
+
+    font-family:
+    "Orbitron",
+    sans-serif;
+
+    font-size:
+    clamp(
+        45px,
+        9vw,
+        105px
+    );
+
+    font-weight: 900;
+
+    line-height: 1;
+
+    color: #ff0033;
+
+    text-shadow:
+
+    4px 4px 0 #550000,
+
+    0 0 25px #ff0033,
+
+    0 0 60px #990000;
+
+}
+
+.hero p {
+
+    max-width: 750px;
+
+    margin:
+    25px auto;
+
+    color:
+    rgba(
+        255,
+        255,
+        255,
+        0.82
+    );
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin: 30px 0;
+
+}
+
+.btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 190px;
+
+    padding:
+    14px 25px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    color: white;
+
+    font-weight: 800;
+
+    border:
+    1px solid
+    rgba(255,255,255,0.2);
+
+    background:
+    rgba(20,0,0,0.65);
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+.btn:hover {
+
+    transform:
+
+    translateY(-5px)
+
+    scale(1.03);
+
+    box-shadow:
+
+    0 0 20px #ff0033,
+
+    0 0 50px rgba(255,0,40,0.4);
+
+}
+
+.btn-primary {
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #660000,
+        #ff0033,
+        #990000
+    );
+
+}
+
+.discord-btn {
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #5865f2,
+        #7b85ff
+    );
+
+}
+
+
+/* =========================
+   SERVER CARD
+========================= */
+
+.server-card {
+
+    max-width: 650px;
+
+    margin:
+    40px auto 0;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    background:
+    rgba(10,0,0,0.75);
+
+    border:
+
+    1px solid
+    rgba(255,0,40,0.35);
+
+    box-shadow:
+
+    0 0 35px
+    rgba(255,0,40,0.15);
+
+}
+
+.server-label {
+
+    color: #aaa;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+
+}
+
+.server-ip {
+
+    font-family:
+    "Orbitron",
+    sans-serif;
+
+    font-size:
+    clamp(
+        18px,
+        4vw,
+        30px
+    );
+
+    font-weight: 800;
+
+    color: #ff3355;
+
+    text-shadow:
+
+    0 0 15px #ff0033;
+
+    word-break: break-word;
+
+}
+
+.copy-btn {
+
+    margin-top: 15px;
+
+    padding:
+    11px 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    color: white;
+
+    font-weight: 800;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #660000,
+        #ff0033,
+        #990000
+    );
+
+}
+
+.status {
+
+    margin-top: 18px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+
+    font-weight: 700;
+
+}
+
+.online {
+
+    color: #00ff66;
+
+}
+
+.offline {
+
+    color: #ff3355;
+
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+
+    padding:
+    100px 6%;
+
+}
+
+.section-title {
+
+    text-align: center;
+
+    font-family:
+    "Orbitron",
+    sans-serif;
+
+    font-size:
+    clamp(
+        30px,
+        5vw,
+        55px
+    );
+
+    margin-bottom: 50px;
+
+    color: white;
+
+}
+
+.section-title span {
+
+    color: #ff0033;
+
+    text-shadow:
+
+    0 0 15px #ff0033;
+
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.features-grid {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap: 22px;
+
+}
+
+.feature-card {
+
+    padding:
+    35px 25px;
+
+    text-align: center;
+
+    border-radius: 18px;
+
+    background:
+    rgba(15,0,0,0.7);
+
+    border:
+    1px solid
+    rgba(255,255,255,0.1);
+
+    transition: 0.35s;
+
+}
+
+.feature-card:hover {
+
+    transform:
+    translateY(-10px);
+
+    border-color: #ff0033;
+
+    box-shadow:
+
+    0 0 35px
+    rgba(255,0,40,0.25);
+
+}
+
+.feature-icon {
+
+    font-size: 45px;
+
+    margin-bottom: 18px;
+
+}
+
+.feature-card h3 {
+
+    font-family:
+    "Orbitron",
+    sans-serif;
+
+    margin-bottom: 12px;
+
+}
+
+.feature-card p {
+
+    color: #bbb;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================
+   MODES
+========================= */
+
+.modes {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap: 20px;
+
+}
+
+.mode {
+
+    padding:
+    30px 20px;
+
+    text-align: center;
+
+    border-radius: 16px;
+
+    background:
+    rgba(15,0,0,0.7);
+
+    border:
+    1px solid
+    rgba(255,255,255,0.1);
+
+    transition: 0.3s;
+
+}
+
+.mode:hover {
+
+    transform:
+    scale(1.05);
+
+    box-shadow:
+
+    0 0 25px
+    rgba(255,0,40,0.3);
+
+}
+
+.mode-icon {
+
+    font-size: 40px;
+
+    margin-bottom: 12px;
+
+}
+
+
+/* =========================
+   STAFF
+========================= */
+
+.staff-grid {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap: 15px;
+
+}
+
+.staff-card {
+
+    padding:
+    25px 12px;
+
+    text-align: center;
+
+    background:
+    rgba(15,0,0,0.7);
+
+    border-radius: 15px;
+
+    border:
+    1px solid
+    rgba(255,255,255,0.1);
+
+    transition: 0.3s;
+
+}
+
+.staff-card:hover {
+
+    transform:
+    translateY(-8px);
+
+    box-shadow:
+
+    0 0 25px
+    rgba(255,0,40,0.25);
+
+}
+
+.staff-avatar {
+
+    width: 70px;
+
+    height: 70px;
+
+    margin:
+    0 auto 15px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 30px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #220000,
+        #550000
+    );
+
+    border:
+    2px solid #ff0033;
+
+    box-shadow:
+
+    0 0 15px
+    rgba(255,0,40,0.4);
+
+}
+
+.owner {
+    color: #ff2222;
+}
+
+.admin {
+    color: #ff9900;
+}
+
+.mod {
+    color: #00ff55;
+}
+
+.vip {
+    color: #cc66ff;
+}
+
+.member {
+    color: #00ffff;
+}
+
+
+/* =========================
+   DISCORD
+========================= */
+
+.discord-box {
+
+    max-width: 850px;
+
+    margin: auto;
+
+    padding:
+    50px 30px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background:
+    rgba(10,0,0,0.8);
+
+    border:
+    1px solid
+    rgba(88,101,242,0.5);
+
+    box-shadow:
+
+    0 0 40px
+    rgba(88,101,242,0.2);
+
+}
+
+.discord-box h2 {
+
+    font-family:
+    "Orbitron",
+    sans-serif;
+
+    font-size:
+    clamp(
+        28px,
+        5vw,
+        50px
+    );
+
+    margin-bottom: 15px;
+
+}
+
+
+/* =========================
+   JOIN
+========================= */
+
+.join {
+
+    text-align: center;
+
+}
+
+.join-box {
+
+    max-width: 900px;
+
+    margin: auto;
+
+    padding:
+    55px 25px;
+
+    border-radius: 25px;
+
+    background:
+    rgba(10,0,0,0.8);
+
+    border:
+    1px solid
+    rgba(255,0,40,0.3);
+
+}
+
+.join-box h2 {
+
+    font-family:
+    "Orbitron",
+    sans-serif;
+
+    font-size:
+    clamp(
+        30px,
+        6vw,
+        65px
+    );
+
+    margin-bottom: 15px;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    padding:
+    35px 6%;
+
+    text-align: center;
+
+    background:
+    rgba(0,0,0,0.9);
+
+    border-top:
+    1px solid
+    rgba(255,0,40,0.2);
+
+}
+
+footer h3 {
+
+    font-family:
+    "Orbitron",
+    sans-serif;
+
+    color: #ff0033;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px) {
+
+    .features-grid {
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .modes {
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .staff-grid {
+        grid-template-columns:
+        repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:650px) {
 
     .nav-links {
-      display: flex;
-      gap: 25px;
-      list-style: none;
+        display: none;
     }
 
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
+    .features-grid {
+        grid-template-columns:
+        1fr;
     }
 
-    .nav-links a:hover {
-      color: #00ffff;
-      text-shadow: 0 0 12px #00ffff;
+    .modes {
+        grid-template-columns:
+        1fr 1fr;
     }
 
-    /* =========================
-       HERO
-    ========================== */
-
-    .hero {
-      min-height: 100vh;
-      padding: 150px 6% 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .hero-content {
-      max-width: 1000px;
-      width: 100%;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 10px 18px;
-      margin-bottom: 25px;
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 999px;
-      background: rgba(0,0,0,0.45);
-      backdrop-filter: blur(10px);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    .hero h1 {
-      font-family: "Orbitron", sans-serif;
-      font-size: clamp(48px, 9vw, 110px);
-      line-height: 1;
-      font-weight: 900;
-      text-transform: uppercase;
-      background: linear-gradient(
-        90deg,
-        #ff003c,
-        #ff00cc,
-        #7a00ff,
-        #00ffff,
-        #00ff66,
-        #ffff00
-      );
-      background-size: 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: titleRGB 6s linear infinite;
-      text-shadow: 0 0 40px rgba(0,255,255,0.2);
-    }
-
-    @keyframes titleRGB {
-      0% { background-position: 0%; }
-      100% { background-position: 300%; }
-    }
-
-    .hero p {
-      max-width: 750px;
-      margin: 25px auto;
-      color: rgba(255,255,255,0.82);
-      font-size: 18px;
-      line-height: 1.8;
-    }
-
-    /* =========================
-       BUTTONS
-    ========================== */
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin: 30px 0;
+    .staff-grid {
+        grid-template-columns:
+        repeat(2,1fr);
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 190px;
-      padding: 14px 25px;
-      border-radius: 12px;
-      text-decoration: none;
-      color: #fff;
-      font-weight: 800;
-      border: 1px solid rgba(255,255,255,0.25);
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(12px);
-      transition: 0.3s;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      transform: translateY(-5px) scale(1.03);
-      box-shadow:
-        0 0 15px #00ffff,
-        0 0 35px rgba(255,0,204,0.4);
-    }
-
-    .btn-primary {
-      background: linear-gradient(
-        90deg,
-        #ff003c,
-        #ff00cc,
-        #7a00ff,
-        #00ffff
-      );
-      background-size: 250%;
-      animation: buttonRGB 5s linear infinite;
-    }
-
-    @keyframes buttonRGB {
-      0% { background-position: 0%; }
-      100% { background-position: 250%; }
-    }
-
-    /* =========================
-       SERVER CARD
-    ========================== */
-
-    .server-card {
-      max-width: 650px;
-      margin: 40px auto 0;
-      padding: 25px;
-      border-radius: 20px;
-      background: rgba(0,0,0,0.58);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.16);
-      box-shadow:
-        0 0 30px rgba(0,255,255,0.1),
-        inset 0 0 30px rgba(255,0,204,0.05);
-    }
-
-    .server-label {
-      color: #aaa;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-    }
-
-    .server-ip {
-      font-family: "Orbitron", sans-serif;
-      font-size: clamp(18px, 4vw, 30px);
-      font-weight: 800;
-      color: #00ffff;
-      text-shadow: 0 0 15px #00ffff;
-      word-break: break-word;
-    }
-
-    .copy-btn {
-      margin-top: 15px;
-      padding: 11px 22px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      color: #fff;
-      font-weight: 800;
-      background: linear-gradient(90deg, #00aaff, #7a00ff, #ff00cc);
-      transition: 0.3s;
-    }
-
-    .copy-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #00ffff;
-    }
-
-    .status {
-      margin-top: 18px;
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      flex-wrap: wrap;
-      font-weight: 700;
-    }
-
-    .online {
-      color: #00ff66;
-      text-shadow: 0 0 10px #00ff66;
-    }
-
-    .offline {
-      color: #ff3355;
-      text-shadow: 0 0 10px #ff3355;
-    }
-
-    /* =========================
-       GENERAL SECTIONS
-    ========================== */
-
-    section {
-      padding: 100px 6%;
-    }
-
-    .section-title {
-      text-align: center;
-      font-family: "Orbitron", sans-serif;
-      font-size: clamp(30px, 5vw, 55px);
-      margin-bottom: 50px;
-      text-transform: uppercase;
-    }
-
-    .section-title span {
-      background: linear-gradient(90deg, #00ffff, #ff00cc, #ffff00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* =========================
-       FEATURES
-    ========================== */
-
-    .features-grid {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .feature-card {
-      padding: 35px 25px;
-      text-align: center;
-      border-radius: 18px;
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255,255,255,0.12);
-      transition: 0.35s;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-10px);
-      border-color: #00ffff;
-      box-shadow: 0 0 30px rgba(0,255,255,0.2);
-    }
-
-    .feature-icon {
-      font-size: 45px;
-      margin-bottom: 18px;
-    }
-
-    .feature-card h3 {
-      font-family: "Orbitron", sans-serif;
-      margin-bottom: 12px;
-    }
-
-    .feature-card p {
-      color: #bbb;
-      line-height: 1.7;
-    }
-
-    /* =========================
-       MODES
-    ========================== */
-
-    .modes {
-      max-width: 1100px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .mode {
-      padding: 30px 20px;
-      text-align: center;
-      border-radius: 16px;
-      background: rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.12);
-      transition: 0.3s;
-    }
-
-    .mode:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255,0,204,0.25);
-    }
-
-    .mode-icon {
-      font-size: 40px;
-      margin-bottom: 12px;
-    }
-
-    .mode h3 {
-      font-family: "Orbitron", sans-serif;
-      margin-bottom: 8px;
-    }
-
-    .mode p {
-      color: #aaa;
-      font-size: 14px;
-    }
-
-    /* =========================
-       STAFF
-    ========================== */
-
-    .staff-grid {
-      max-width: 1000px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 15px;
-    }
-
-    .staff-card {
-      padding: 25px 12px;
-      text-align: center;
-      background: rgba(0,0,0,0.55);
-      border-radius: 15px;
-      border: 1px solid rgba(255,255,255,0.12);
-      transition: 0.3s;
-    }
-
-    .staff-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 0 25px rgba(0,255,255,0.2);
-    }
-
-    .staff-avatar {
-      width: 70px;
-      height: 70px;
-      margin: 0 auto 15px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      background: linear-gradient(135deg, #111, #333);
-      border: 2px solid #00ffff;
-      box-shadow: 0 0 15px rgba(0,255,255,0.3);
-    }
-
-    .staff-card h3 {
-      font-family: "Orbitron", sans-serif;
-      font-size: 14px;
-    }
-
-    .owner { color: #ff2222; }
-    .admin { color: #ffff00; }
-    .mod { color: #00ff55; }
-    .vip { color: #cc66ff; }
-    .member { color: #00ffff; }
-
-    /* =========================
-       DISCORD
-    ========================== */
-
-    .discord-box {
-      max-width: 850px;
-      margin: auto;
-      padding: 50px 30px;
-      text-align: center;
-      border-radius: 25px;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,0.15);
-      box-shadow: 0 0 40px rgba(114,137,218,0.15);
-    }
-
-    .discord-box h2 {
-      font-family: "Orbitron", sans-serif;
-      font-size: clamp(28px, 5vw, 50px);
-      margin-bottom: 15px;
-    }
-
-    .discord-box p {
-      color: #bbb;
-      margin-bottom: 25px;
-    }
-
-    .discord-btn {
-      background: #5865f2;
-    }
-
-    /* =========================
-       JOIN SECTION
-    ========================== */
-
-    .join {
-      text-align: center;
-    }
-
-    .join-box {
-      max-width: 900px;
-      margin: auto;
-      padding: 55px 25px;
-      border-radius: 25px;
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-
-    .join-box h2 {
-      font-family: "Orbitron", sans-serif;
-      font-size: clamp(30px, 6vw, 65px);
-      margin-bottom: 15px;
-    }
-
-    .join-box p {
-      color: #bbb;
-      margin-bottom: 25px;
-    }
-
-    /* =========================
-       FOOTER
-    ========================== */
-
-    footer {
-      padding: 35px 6%;
-      text-align: center;
-      background: rgba(0,0,0,0.75);
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    footer h3 {
-      font-family: "Orbitron", sans-serif;
-      margin-bottom: 10px;
-    }
-
-    footer p {
-      color: #888;
-      font-size: 14px;
-    }
-
-    /* =========================
-       MOBILE
-    ========================== */
-
-    @media (max-width: 900px) {
-      .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .modes {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .staff-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .nav-links {
-        gap: 12px;
-      }
-    }
-
-    @media (max-width: 650px) {
-      nav {
-        padding: 15px 4%;
-      }
-
-      .logo {
-        font-size: 16px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      section {
-        padding: 75px 5%;
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .modes {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .staff-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .hero {
-        padding-top: 130px;
-      }
-
-      .hero p {
-        font-size: 15px;
-      }
-
-      .btn {
         width: 100%;
-      }
     }
 
-    @media (max-width: 400px) {
-      .modes {
-        grid-template-columns: 1fr;
-      }
+}
 
-      .staff-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-  </style>
+</style>
+
 </head>
 
 <body>
 
-  <!-- PARTICLES -->
-  <div id="particles"></div>
-
-  <!-- NAVBAR -->
-  <nav>
-    <div class="logo">KOTTARAM SMP</div>
-
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#modes">Modes</a></li>
-      <li><a href="#staff">Staff</a></li>
-      <li><a href="#discord">Discord</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-
-      <div class="badge">
-        ⛏️ MINECRAFT SURVIVAL MULTIPLAYER
-      </div>
-
-      <h1>KOTTARAM SMP</h1>
-
-      <p>
-        Build your empire, fight your rivals, explore a massive world,
-        make new friends and create your own story on KOTTARAM SMP.
-      </p>
-
-      <div class="buttons">
-        <a href="#join" class="btn btn-primary">
-          🎮 JOIN SERVER
-        </a>
-
-        <a
-          href="https://discord.gg/A4PN6NmHH"
-          target="_blank"
-          rel="noopener"
-          class="btn discord-btn"
-        >
-          💬 JOIN DISCORD
-        </a>
-      </div>
-
-      <!-- SERVER CARD -->
-      <div class="server-card">
-
-        <div class="server-label">
-          Server IP
-        </div>
-
-        <div class="server-ip" id="serverIP">
-          mc.hivemc.fun:25582
-        </div>
-
-        <button class="copy-btn" onclick="copyIP()">
-          📋 COPY IP
-        </button>
-
-        <div class="status">
-          <span>
-            Status:
-            <strong id="serverStatus">CHECKING...</strong>
-          </span>
-
-          <span>
-            Players:
-            <strong id="playerCount">—</strong>
-          </span>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section id="features">
-
-    <h2 class="section-title">
-      SERVER <span>FEATURES</span>
-    </h2>
-
-    <div class="features-grid">
-
-      <div class="feature-card">
-        <div class="feature-icon">🌎</div>
-        <h3>Survival World</h3>
-        <p>
-          Explore a huge survival world and build your ultimate base.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">⚔️</div>
-        <h3>PvP</h3>
-        <p>
-          Battle other players and prove that you are the strongest.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">💰</div>
-        <h3>Economy</h3>
-        <p>
-          Earn money, trade items and build your own Minecraft empire.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🏆</div>
-        <h3>Events</h3>
-        <p>
-          Participate in exciting community events and competitions.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">👥</div>
-        <h3>Community</h3>
-        <p>
-          Meet players, create teams and enjoy the SMP together.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🔥</div>
-        <h3>Adventure</h3>
-        <p>
-          Discover dangerous places, rare loot and unforgettable adventures.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- MODES -->
-  <section id="modes">
-
-    <h2 class="section-title">
-      GAME <span>MODES</span>
-    </h2>
-
-    <div class="modes">
-
-      <div class="mode">
-        <div class="mode-icon">🌲</div>
-        <h3>Survival</h3>
-        <p>Build and survive.</p>
-      </div>
-
-      <div class="mode">
-        <div class="mode-icon">⚔️</div>
-        <h3>PvP</h3>
-        <p>Fight your enemies.</p>
-      </div>
-
-      <div class="mode">
-        <div class="mode-icon">💎</div>
-        <h3>Economy</h3>
-        <p>Trade and earn money.</p>
-      </div>
-
-      <div class="mode">
-        <div class="mode-icon">🏆</div>
-        <h3>Events</h3>
-        <p>Win amazing rewards.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- STAFF -->
-  <section id="staff">
-
-    <h2 class="section-title">
-      OUR <span>STAFF</span>
-    </h2>
-
-    <div class="staff-grid">
-
-      <div class="staff-card">
-        <div class="staff-avatar">👑</div>
-        <h3 class="owner">OWNER</h3>
-      </div>
-
-      <div class="staff-card">
-        <div class="staff-avatar">🛡️</div>
-        <h3 class="admin">ADMIN</h3>
-      </div>
-
-      <div class="staff-card">
-        <div class="staff-avatar">🔨</div>
-        <h3 class="mod">MOD</h3>
-      </div>
-
-      <div class="staff-card">
-        <div class="staff-avatar">💎</div>
-        <h3 class="vip">VIP</h3>
-      </div>
-
-      <div class="staff-card">
-        <div class="staff-avatar">👤</div>
-        <h3 class="member">MEMBER</h3>
-      </div>
+<div id="particles"></div>
 
-    </div>
-  </section>
 
-  <!-- DISCORD -->
-  <section id="discord">
-
-    <div class="discord-box">
+<!-- NAVBAR -->
 
-      <h2>JOIN OUR DISCORD</h2>
-
-      <p>
-        Chat with the community, get server updates,
-        join events and meet other KOTTARAM SMP players.
-      </p>
+<nav>
 
-      <a
-        href="https://discord.gg/A4PN6NmHH"
-        target="_blank"
-        rel="noopener"
-        class="btn discord-btn"
-      >
-        💬 JOIN DISCORD
-      </a>
+<div class="logo">
 
-    </div>
+🌙 BLOODMOON SMP
 
-  </section>
+</div>
 
-  <!-- JOIN -->
-  <section class="join" id="join">
+<ul class="nav-links">
 
-    <div class="join-box">
+<li>
+<a href="#home">
+Home
+</a>
+</li>
 
-      <h2>READY TO PLAY?</h2>
+<li>
+<a href="#features">
+Features
+</a>
+</li>
 
-      <p>
-        Open Minecraft and join KOTTARAM SMP today!
-      </p>
+<li>
+<a href="#modes">
+Modes
+</a>
+</li>
 
-      <div class="server-ip">
-        mc.hivemc.fun:25582
-      </div>
+<li>
+<a href="#staff">
+Staff
+</a>
+</li>
 
-      <div class="buttons">
+<li>
+<a href="#discord">
+Discord
+</a>
+</li>
 
-        <button class="btn btn-primary" onclick="copyIP()">
-          📋 COPY SERVER IP
-        </button>
+</ul>
 
-        <a
-          href="https://discord.gg/A4PN6NmHH"
-          target="_blank"
-          rel="noopener"
-          class="btn discord-btn"
-        >
-          💬 DISCORD
-        </a>
+</nav>
 
-      </div>
 
-    </div>
+<!-- HERO -->
 
-  </section>
+<section
+class="hero"
+id="home">
 
-  <!-- FOOTER -->
-  <footer>
+<div
+class="hero-content">
 
-    <h3>KOTTARAM SMP</h3>
+<div
+class="bloodmoon">
+</div>
 
-    <p>
-      Minecraft Survival Multiplayer Server
-    </p>
+<div
+class="badge">
 
-    <p>
-      mc.hivemc.fun:25582
-    </p>
+🌙 MINECRAFT SURVIVAL MULTIPLAYER
 
-    <p style="margin-top:15px;">
-      © 2026 KOTTARAM SMP. All rights reserved.
-    </p>
+</div>
 
-  </footer>
+<h1>
 
-  <script>
+BLOODMOON SMP
 
-    /* =========================
-       SERVER SETTINGS
-    ========================== */
+</h1>
 
-    const SERVER_IP = "mc.hivemc.fun:25582";
+<p>
 
-    /* =========================
-       COPY IP
-    ========================== */
+Enter the world of BLOODMOON SMP.
+Build your empire, fight your rivals,
+explore dangerous lands and become
+a legend.
 
-    function copyIP() {
+</p>
 
-      if (navigator.clipboard) {
 
-        navigator.clipboard.writeText(SERVER_IP)
-          .then(() => {
-            showCopyMessage();
-          })
-          .catch(() => {
-            fallbackCopy();
-          });
+<div
+class="buttons">
 
-      } else {
-        fallbackCopy();
-      }
-    }
+<a
+href="#join"
+class="btn btn-primary">
 
-    function fallbackCopy() {
+🎮 JOIN SERVER
 
-      const textarea = document.createElement("textarea");
+</a>
 
-      textarea.value = SERVER_IP;
+<a
+href="https://discord.gg/BvrEZznUA"
+target="_blank"
+class="btn discord-btn">
 
-      textarea.style.position = "fixed";
-      textarea.style.opacity = "0";
+💬 JOIN DISCORD
 
-      document.body.appendChild(textarea);
+</a>
 
-      textarea.select();
+</div>
 
-      try {
-        document.execCommand("copy");
-        showCopyMessage();
-      } catch (error) {
-        alert("Server IP: " + SERVER_IP);
-      }
 
-      document.body.removeChild(textarea);
-    }
+<!-- SERVER CARD -->
 
-    function showCopyMessage() {
+<div
+class="server-card">
 
-      const button = document.querySelector(".copy-btn");
+<div
+class="server-label">
 
-      const oldText = button.innerHTML;
+SERVER IP
 
-      button.innerHTML = "✅ IP COPIED!";
+</div>
 
-      setTimeout(() => {
-        button.innerHTML = oldText;
-      }, 2000);
-    }
+<div
+class="server-ip"
+id="serverIP">
 
-    /* =========================
-       SERVER STATUS
-    ========================== */
+mc.hivemc.fun:25582
 
-    async function checkServer() {
+</div>
 
-      const status = document.getElementById("serverStatus");
-      const players = document.getElementById("playerCount");
+<button
+class="copy-btn"
+onclick="copyIP()">
 
-      status.textContent = "CHECKING...";
-      status.className = "";
+📋 COPY IP
 
-      try {
+</button>
 
-        const response = await fetch(
-          "https://api.mcsrvstat.us/3/" +
-          encodeURIComponent(SERVER_IP)
+
+<div
+class="status">
+
+<span>
+
+Status:
+
+<strong
+id="serverStatus">
+
+CHECKING...
+
+</strong>
+
+</span>
+
+
+<span>
+
+Players:
+
+<strong
+id="playerCount">
+
+—
+
+</strong>
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section
+id="features">
+
+<h2
+class="section-title">
+
+SERVER
+
+<span>
+
+FEATURES
+
+</span>
+
+</h2>
+
+
+<div
+class="features-grid">
+
+
+<div
+class="feature-card">
+
+<div
+class="feature-icon">
+
+🌎
+
+</div>
+
+<h3>
+
+Survival World
+
+</h3>
+
+<p>
+
+Explore a huge world and build
+your ultimate base.
+
+</p>
+
+</div>
+
+
+<div
+class="feature-card">
+
+<div
+class="feature-icon">
+
+⚔️
+
+</div>
+
+<h3>
+
+PvP
+
+</h3>
+
+<p>
+
+Fight other players and become
+the strongest warrior.
+
+</p>
+
+</div>
+
+
+<div
+class="feature-card">
+
+<div
+class="feature-icon">
+
+💰
+
+</div>
+
+<h3>
+
+Economy
+
+</h3>
+
+<p>
+
+Earn money, trade items and
+build your empire.
+
+</p>
+
+</div>
+
+
+<div
+class="feature-card">
+
+<div
+class="feature-icon">
+
+🏆
+
+</div>
+
+<h3>
+
+Events
+
+</h3>
+
+<p>
+
+Join exciting events and win
+amazing rewards.
+
+</p>
+
+</div>
+
+
+<div
+class="feature-card">
+
+<div
+class="feature-icon">
+
+👥
+
+</div>
+
+<h3>
+
+Community
+
+</h3>
+
+<p>
+
+Meet players and enjoy the
+BLOODMOON community.
+
+</p>
+
+</div>
+
+
+<div
+class="feature-card">
+
+<div
+class="feature-icon">
+
+🔥
+
+</div>
+
+<h3>
+
+Adventure
+
+</h3>
+
+<p>
+
+Discover rare loot and dangerous
+new adventures.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MODES -->
+
+<section
+id="modes">
+
+<h2
+class="section-title">
+
+GAME
+
+<span>
+
+MODES
+
+</span>
+
+</h2>
+
+
+<div
+class="modes">
+
+
+<div
+class="mode">
+
+<div
+class="mode-icon">
+
+🌲
+
+</div>
+
+<h3>
+
+Survival
+
+</h3>
+
+<p>
+
+Build and survive.
+
+</p>
+
+</div>
+
+
+<div
+class="mode">
+
+<div
+class="mode-icon">
+
+⚔️
+
+</div>
+
+<h3>
+
+PvP
+
+</h3>
+
+<p>
+
+Fight your enemies.
+
+</p>
+
+</div>
+
+
+<div
+class="mode">
+
+<div
+class="mode-icon">
+
+💎
+
+</div>
+
+<h3>
+
+Economy
+
+</h3>
+
+<p>
+
+Trade and earn money.
+
+</p>
+
+</div>
+
+
+<div
+class="mode">
+
+<div
+class="mode-icon">
+
+🏆
+
+</div>
+
+<h3>
+
+Events
+
+</h3>
+
+<p>
+
+Win amazing rewards.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STAFF -->
+
+<section
+id="staff">
+
+<h2
+class="section-title">
+
+OUR
+
+<span>
+
+STAFF
+
+</span>
+
+</h2>
+
+
+<div
+class="staff-grid">
+
+
+<div
+class="staff-card">
+
+<div
+class="staff-avatar">
+
+👑
+
+</div>
+
+<h3
+class="owner">
+
+OWNER
+
+</h3>
+
+</div>
+
+
+<div
+class="staff-card">
+
+<div
+class="staff-avatar">
+
+🛡️
+
+</div>
+
+<h3
+class="admin">
+
+ADMIN
+
+</h3>
+
+</div>
+
+
+<div
+class="staff-card">
+
+<div
+class="staff-avatar">
+
+🔨
+
+</div>
+
+<h3
+class="mod">
+
+MOD
+
+</h3>
+
+</div>
+
+
+<div
+class="staff-card">
+
+<div
+class="staff-avatar">
+
+💎
+
+</div>
+
+<h3
+class="vip">
+
+VIP
+
+</h3>
+
+</div>
+
+
+<div
+class="staff-card">
+
+<div
+class="staff-avatar">
+
+👤
+
+</div>
+
+<h3
+class="member">
+
+MEMBER
+
+</h3>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DISCORD -->
+
+<section
+id="discord">
+
+<div
+class="discord-box">
+
+<h2>
+
+JOIN OUR DISCORD
+
+</h2>
+
+<p>
+
+Chat with the community,
+get server updates and join
+BLOODMOON SMP events.
+
+</p>
+
+<a
+href="https://discord.gg/BvrEZznUA"
+target="_blank"
+class="btn discord-btn">
+
+💬 JOIN DISCORD
+
+</a>
+
+</div>
+
+</section>
+
+
+<!-- JOIN -->
+
+<section
+class="join"
+id="join">
+
+<div
+class="join-box">
+
+<h2>
+
+READY TO PLAY?
+
+</h2>
+
+<p>
+
+Open Minecraft and join
+BLOODMOON SMP today!
+
+</p>
+
+<div
+class="server-ip">
+
+mc.hivemc.fun:25582
+
+</div>
+
+
+<div
+class="buttons">
+
+<button
+class="btn btn-primary"
+onclick="copyIP()">
+
+📋 COPY SERVER IP
+
+</button>
+
+
+<a
+href="https://discord.gg/BvrEZznUA"
+target="_blank"
+class="btn discord-btn">
+
+💬 DISCORD
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<h3>
+
+🌙 BLOODMOON SMP
+
+</h3>
+
+<p>
+
+Minecraft Survival Multiplayer Server
+
+</p>
+
+<p>
+
+mc.hivemc.fun:25582
+
+</p>
+
+<p
+style="margin-top:15px;">
+
+© 2026 BLOODMOON SMP.
+All rights reserved.
+
+</p>
+
+</footer>
+
+
+<script>
+
+/* SERVER SETTINGS */
+
+const SERVER_IP =
+"mc.hivemc.fun:25582";
+
+
+/* COPY IP */
+
+function copyIP() {
+
+    navigator.clipboard
+    .writeText(SERVER_IP)
+    .then(() => {
+
+        alert(
+        "Server IP Copied: " +
+        SERVER_IP
         );
 
-        if (!response.ok) {
-          throw new Error("API error");
-        }
+    })
+    .catch(() => {
 
-        const data = await response.json();
+        alert(
+        "Server IP: " +
+        SERVER_IP
+        );
 
-        if (data.online) {
+    });
 
-          status.textContent = "ONLINE";
-          status.className = "online";
+}
 
-          if (
-            data.players &&
-            typeof data.players.online === "number"
-          ) {
+
+/* LIVE SERVER STATUS */
+
+async function checkServer() {
+
+    const status =
+    document.getElementById(
+    "serverStatus"
+    );
+
+    const players =
+    document.getElementById(
+    "playerCount"
+    );
+
+    try {
+
+        const response =
+        await fetch(
+
+        "https://api.mcsrvstat.us/3/" +
+
+        encodeURIComponent(
+        SERVER_IP
+        )
+
+        );
+
+        const data =
+        await response.json();
+
+
+        if(data.online) {
+
+            status.textContent =
+            "ONLINE 🟢";
+
+            status.className =
+            "online";
+
 
             players.textContent =
-              data.players.online +
-              " / " +
-              (data.players.max ?? "?");
 
-          } else {
+            data.players.online +
 
-            players.textContent = "ONLINE";
+            " / " +
 
-          }
-
-        } else {
-
-          status.textContent = "OFFLINE";
-          status.className = "offline";
-          players.textContent = "0";
+            data.players.max;
 
         }
 
-      } catch (error) {
+        else {
 
-        status.textContent = "UNAVAILABLE";
-        status.className = "offline";
-        players.textContent = "—";
+            status.textContent =
+            "OFFLINE 🔴";
 
-      }
+            status.className =
+            "offline";
+
+            players.textContent =
+            "0";
+
+        }
 
     }
 
-    checkServer();
+    catch(error) {
 
-    setInterval(checkServer, 30000);
+        status.textContent =
+        "UNAVAILABLE";
 
-    /* =========================
-       PARTICLES
-    ========================== */
+        status.className =
+        "offline";
 
-    const particleContainer =
-      document.getElementById("particles");
+        players.textContent =
+        "—";
 
-    for (let i = 0; i < 60; i++) {
-
-      const particle =
-        document.createElement("div");
-
-      particle.className = "particle";
-
-      particle.style.left =
-        Math.random() * 100 + "%";
-
-      particle.style.animationDuration =
-        (8 + Math.random() * 15) + "s";
-
-      particle.style.animationDelay =
-        Math.random() * 10 + "s";
-
-      const size =
-        2 + Math.random() * 4;
-
-      particle.style.width = size + "px";
-      particle.style.height = size + "px";
-
-      particleContainer.appendChild(particle);
     }
 
-  </script>
+}
+
+
+checkServer();
+
+setInterval(
+checkServer,
+30000
+);
+
+
+/* BLOOD PARTICLES */
+
+const particles =
+document.getElementById(
+"particles"
+);
+
+
+for(
+let i = 0;
+i < 70;
+i++
+) {
+
+    const particle =
+    document.createElement(
+    "div"
+    );
+
+    particle.className =
+    "particle";
+
+
+    particle.style.left =
+
+    Math.random() * 100 +
+
+    "%";
+
+
+    particle.style.width =
+
+    2 + Math.random() * 5 +
+
+    "px";
+
+
+    particle.style.height =
+
+    2 + Math.random() * 5 +
+
+    "px";
+
+
+    particle.style.animationDuration =
+
+    8 + Math.random() * 12 +
+
+    "s";
+
+
+    particle.style.animationDelay =
+
+    Math.random() * 10 +
+
+    "s";
+
+
+    particles.appendChild(
+    particle
+    );
+
+}
+
+</script>
 
 </body>
 </html>
+```
