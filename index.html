@@ -4,569 +4,467 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DINKAN SMP | Minecraft Server</title>
-<meta name="description" content="DINKAN SMP - Minecraft Survival Multiplayer Server">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>DINKAN SMP | PvP Hub</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-    font-family:Poppins,sans-serif;
-    background:#050509;
-    color:#fff;
-    overflow-x:hidden;
+body {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    background: #050509;
+    overflow-x: hidden;
 }
 
 /* RGB BACKGROUND */
-body::before{
-    content:"";
-    position:fixed;
-    inset:-50%;
-    z-index:-3;
+body::before {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    z-index: -3;
     background:
-        radial-gradient(circle at 20% 30%,rgba(255,0,80,.25),transparent 25%),
-        radial-gradient(circle at 80% 20%,rgba(120,0,255,.25),transparent 25%),
-        radial-gradient(circle at 50% 80%,rgba(0,200,255,.20),transparent 25%),
-        radial-gradient(circle at 90% 90%,rgba(0,255,100,.15),transparent 25%);
-    filter:blur(45px);
-    animation:bgMove 12s infinite alternate ease-in-out;
-}
-
-@keyframes bgMove{
-    0%{transform:translate(-3%,-2%) rotate(0deg)}
-    50%{transform:translate(4%,3%) rotate(5deg)}
-    100%{transform:translate(-2%,5%) rotate(-5deg)}
-}
-
-/* GRID */
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-2;
-    opacity:.12;
-    background-image:
-        linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
-    background-size:50px 50px;
-}
-
-/* NAVBAR */
-nav{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    z-index:1000;
-    padding:18px 6%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:rgba(5,5,9,.72);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.logo{
-    font-family:Orbitron,sans-serif;
-    font-size:24px;
-    font-weight:900;
-    letter-spacing:2px;
-    background:linear-gradient(90deg,#ff0055,#8b00ff,#00d9ff,#00ff66,#ffe600,#ff0055);
-    background-size:400%;
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:rgb 6s linear infinite;
-}
-
-@keyframes rgb{
-    0%{background-position:0%}
-    100%{background-position:400%}
-}
-
-nav ul{
-    display:flex;
-    list-style:none;
-    gap:25px;
-}
-
-nav a{
-    color:#ddd;
-    text-decoration:none;
-    font-weight:600;
-    transition:.3s;
-}
-
-nav a:hover{
-    color:#fff;
-    text-shadow:0 0 15px #8b00ff;
-}
-
-.menu{
-    display:none;
-    font-size:28px;
-    cursor:pointer;
-}
-
-/* HERO */
-.hero{
-    min-height:100vh;
-    padding:150px 7% 90px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    position:relative;
-}
-
-.hero-content{
-    max-width:1000px;
-}
-
-.badge{
-    display:inline-block;
-    padding:10px 20px;
-    border-radius:30px;
-    border:1px solid rgba(255,255,255,.2);
-    background:rgba(255,255,255,.06);
-    box-shadow:0 0 30px rgba(140,0,255,.18);
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:2px;
-    margin-bottom:25px;
-}
-
-.hero h1{
-    font-family:Orbitron,sans-serif;
-    font-size:clamp(55px,10vw,120px);
-    line-height:1;
-    font-weight:900;
-    background:linear-gradient(
-        90deg,
-        #ff0000,
-        #ff00cc,
-        #7800ff,
-        #00ccff,
-        #00ff66,
-        #ffff00,
-        #ff0000
-    );
-    background-size:500%;
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:rgb 7s linear infinite;
-    text-shadow:0 0 50px rgba(130,0,255,.2);
-}
-
-.hero p{
-    margin:25px auto;
-    max-width:700px;
-    color:#bbb;
-    font-size:18px;
-}
-
-.buttons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
-    margin-top:30px;
-}
-
-.btn{
-    text-decoration:none;
-    color:#fff;
-    padding:15px 27px;
-    border-radius:12px;
-    font-weight:800;
-    transition:.3s;
-    border:1px solid rgba(255,255,255,.15);
-    background:rgba(255,255,255,.07);
-}
-
-.btn:hover{
-    transform:translateY(-4px) scale(1.02);
-    box-shadow:0 10px 35px rgba(120,0,255,.35);
-}
-
-.btn-primary{
-    background:linear-gradient(90deg,#ff0055,#7700ff,#00bfff);
-    background-size:200%;
-    animation:rgb 4s linear infinite;
-}
-
-/* SERVER CARD */
-.server-card{
-    margin:40px auto 0;
-    max-width:650px;
-    padding:25px;
-    border-radius:20px;
-    background:rgba(255,255,255,.055);
-    border:1px solid rgba(255,255,255,.12);
-    backdrop-filter:blur(15px);
-    box-shadow:0 0 60px rgba(100,0,255,.15);
-}
-
-.server-title{
-    color:#aaa;
-    font-size:13px;
-    text-transform:uppercase;
-    letter-spacing:2px;
-}
-
-.ip{
-    margin:8px 0;
-    font-family:Orbitron,sans-serif;
-    font-size:clamp(18px,4vw,30px);
-    font-weight:800;
-    color:#fff;
-    word-break:break-all;
-}
-
-.online{
-    color:#00ff73;
-    font-weight:700;
-}
-
-.online-dot{
-    display:inline-block;
-    width:10px;
-    height:10px;
-    background:#00ff73;
-    border-radius:50%;
-    margin-right:7px;
-    box-shadow:0 0 15px #00ff73;
-    animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-    50%{opacity:.35;transform:scale(.7)}
-}
-
-/* SECTIONS */
-section{
-    padding:100px 7%;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:55px;
-}
-
-.section-title span{
-    color:#9d5cff;
-    font-size:13px;
-    letter-spacing:3px;
-    font-weight:800;
-}
-
-.section-title h2{
-    font-family:Orbitron,sans-serif;
-    font-size:42px;
-    margin-top:10px;
-}
-
-/* CARDS */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
-    max-width:1200px;
-    margin:auto;
-}
-
-.card{
-    padding:30px;
-    border-radius:20px;
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.1);
-    backdrop-filter:blur(12px);
-    transition:.35s;
-}
-
-.card:hover{
-    transform:translateY(-8px);
-    border-color:rgba(160,80,255,.5);
-    box-shadow:0 20px 50px rgba(80,0,255,.15);
-}
-
-.card-icon{
-    font-size:40px;
-    margin-bottom:15px;
-}
-
-.card h3{
-    font-size:21px;
-    margin-bottom:10px;
-}
-
-.card p{
-    color:#aaa;
-    line-height:1.7;
-}
-
-/* STATUS */
-.status-box{
-    max-width:900px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-
-.stat{
-    text-align:center;
-    padding:30px 15px;
-    border-radius:18px;
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.1);
-}
-
-.stat strong{
-    display:block;
-    font-family:Orbitron,sans-serif;
-    font-size:30px;
-    margin-bottom:8px;
-}
-
-.stat span{
-    color:#999;
-}
-
-/* RANKS */
-.rank{
-    text-align:center;
-}
-
-.rank-name{
-    font-family:Orbitron,sans-serif;
-    font-weight:900;
-    font-size:25px;
-    margin-bottom:12px;
-}
-
-.owner{
-    background:linear-gradient(90deg,#ff0000,#ff00ff,#ff0000);
-    background-size:300%;
-    -webkit-background-clip:text;
-    color:transparent;
-    animation:rgb 3s linear infinite;
-}
-
-.developer{
-    color:#00d9ff;
-    text-shadow:0 0 15px #00d9ff;
-}
-
-.admin{
-    color:#ffcc00;
-    text-shadow:0 0 15px #ffcc00;
-}
-
-.mod{
-    color:#00ffaa;
-    text-shadow:0 0 15px #00ffaa;
-}
-
-.helper{
-    color:#66ff33;
-}
-
-.vip{
-    color:#d966ff;
-}
-
-.member{
-    color:#00ff66;
-}
-
-/* RULES */
-.rules{
-    max-width:900px;
-    margin:auto;
-}
-
-.rule{
-    display:flex;
-    gap:18px;
-    align-items:flex-start;
-    padding:20px;
-    margin-bottom:12px;
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:15px;
-}
-
-.rule-icon{
-    font-size:25px;
-}
-
-.rule h3{
-    margin-bottom:4px;
-}
-
-.rule p{
-    color:#999;
-}
-
-/* LEADERBOARD */
-.leaderboard{
-    max-width:850px;
-    margin:auto;
-}
-
-.player{
-    display:grid;
-    grid-template-columns:70px 1fr 130px;
-    align-items:center;
-    gap:15px;
-    padding:18px 22px;
-    margin-bottom:10px;
-    border-radius:14px;
-    background:rgba(255,255,255,.05);
-}
-
-.position{
-    font-family:Orbitron,sans-serif;
-    font-weight:900;
-}
-
-.player-name{
-    font-weight:700;
-}
-
-.player-value{
-    text-align:right;
-    color:#9d5cff;
-    font-weight:700;
-}
-
-/* SHOP */
-.price{
-    font-size:28px;
-    font-family:Orbitron,sans-serif;
-    margin:15px 0;
-}
-
-.shop-card{
-    text-align:center;
-}
-
-/* CTA */
-.cta{
-    max-width:1000px;
-    margin:auto;
-    text-align:center;
-    padding:70px 30px;
-    border-radius:30px;
-    background:
-        linear-gradient(rgba(20,10,40,.75),rgba(10,10,20,.9)),
-        radial-gradient(circle,#7600ff,transparent 60%);
-    border:1px solid rgba(255,255,255,.12);
-}
-
-.cta h2{
-    font-family:Orbitron,sans-serif;
-    font-size:42px;
-    margin-bottom:15px;
-}
-
-.cta p{
-    color:#aaa;
-    margin-bottom:25px;
-}
-
-/* FOOTER */
-footer{
-    padding:40px 7%;
-    text-align:center;
-    border-top:1px solid rgba(255,255,255,.08);
-    color:#777;
-}
-
-footer strong{
-    color:#fff;
+        radial-gradient(circle at 20% 30%, #ff004c55, transparent 25%),
+        radial-gradient(circle at 80% 20%, #7b00ff55, transparent 25%),
+        radial-gradient(circle at 70% 80%, #00eaff44, transparent 25%),
+        radial-gradient(circle at 20% 80%, #00ff8844, transparent 25%);
+    filter: blur(60px);
+    animation: rgbMove 12s infinite alternate ease-in-out;
+}
+
+@keyframes rgbMove {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(10deg) scale(1.1); }
+    100% { transform: rotate(-10deg) scale(1.2); }
 }
 
 /* PARTICLES */
-.particle{
-    position:fixed;
-    width:4px;
-    height:4px;
-    border-radius:50%;
-    background:#fff;
-    opacity:.5;
-    z-index:-1;
-    animation:float linear infinite;
+.particle {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    opacity: .35;
+    pointer-events: none;
+    animation: float 8s linear infinite;
 }
 
-@keyframes float{
-    from{
-        transform:translateY(110vh);
-        opacity:0;
+@keyframes float {
+    from {
+        transform: translateY(110vh);
     }
-    15%{opacity:.6}
-    85%{opacity:.6}
-    to{
-        transform:translateY(-10vh);
-        opacity:0;
+    to {
+        transform: translateY(-10vh);
     }
+}
+
+/* NAVBAR */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5,5,9,.72);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #ffffff12;
+}
+
+.logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 23px;
+    font-weight: 900;
+    background: linear-gradient(90deg,#ff3030,#ff00cc,#7b00ff,#00eaff,#00ff88);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: logoRGB 5s linear infinite;
+}
+
+@keyframes logoRGB {
+    to { background-position: 300%; }
+}
+
+nav a {
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 25px;
+    transition: .25s;
+}
+
+nav a:hover {
+    color: white;
+    text-shadow: 0 0 15px #00eaff;
+}
+
+/* HERO */
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero-content {
+    max-width: 900px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid #ffffff20;
+    border-radius: 30px;
+    background: #ffffff0b;
+    backdrop-filter: blur(10px);
+    color: #aaa;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(45px, 9vw, 100px);
+    line-height: 1;
+    background: linear-gradient(
+        90deg,
+        #ff3030,
+        #ff00cc,
+        #8a2be2,
+        #00eaff,
+        #00ff88,
+        #ffe600,
+        #ff3030
+    );
+    background-size: 400%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: titleRGB 7s linear infinite;
+}
+
+@keyframes titleRGB {
+    to { background-position: 400%; }
+}
+
+.hero p {
+    color: #aaa;
+    font-size: 18px;
+    margin: 25px auto;
+    max-width: 650px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    border: 1px solid #ffffff20;
+    background: #ffffff0c;
+    transition: .25s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px #7b00ff55;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg,#7b00ff,#00aaff);
+}
+
+/* SECTIONS */
+section {
+    padding: 90px 7%;
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 45px;
+}
+
+/* SERVER CARD */
+.server-card {
+    max-width: 850px;
+    margin: auto;
+    padding: 35px;
+    text-align: center;
+    border: 1px solid #ffffff15;
+    border-radius: 20px;
+    background: #ffffff08;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 50px #00000055;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    border-radius: 30px;
+    background: #00ff8815;
+    color: #00ff88;
+    margin-bottom: 20px;
+}
+
+.dot {
+    width: 9px;
+    height: 9px;
+    background: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #00ff88;
+}
+
+.ip {
+    font-family: monospace;
+    font-size: 25px;
+    margin: 15px 0 25px;
+    color: #00eaff;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+    gap: 20px;
+}
+
+.card {
+    padding: 28px;
+    border-radius: 18px;
+    border: 1px solid #ffffff12;
+    background: #ffffff08;
+    backdrop-filter: blur(14px);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: #00eaff55;
+    box-shadow: 0 15px 40px #00000055;
+}
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #999;
+    font-size: 14px;
+}
+
+/* PVP PANEL */
+.pvp-panel {
+    max-width: 950px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 20px;
+    background: #050509cc;
+    border: 1px solid #ffffff15;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat {
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    background: #ffffff08;
+}
+
+.stat strong {
+    display: block;
+    font-family: 'Orbitron';
+    font-size: 28px;
+    color: #00eaff;
+}
+
+.stat span {
+    color: #888;
+    font-size: 12px;
+}
+
+.keystrokes {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.key {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    border: 1px solid #ffffff20;
+    background: #111;
+    font-family: 'Orbitron';
+    transition: .1s;
+}
+
+.key.active {
+    transform: translateY(3px);
+    background: #7b00ff;
+    box-shadow: 0 0 20px #7b00ff;
+}
+
+.mouse {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.mouse button {
+    padding: 12px 20px;
+    border: 1px solid #ffffff20;
+    border-radius: 9px;
+    background: #111;
+    color: white;
+    cursor: pointer;
+}
+
+.cps {
+    margin-top: 10px;
+    color: #ff00cc;
+    font-weight: 700;
+}
+
+/* CROSSHAIR */
+.crosshair-area {
+    height: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        linear-gradient(#ffffff05 1px, transparent 1px),
+        linear-gradient(90deg,#ffffff05 1px, transparent 1px);
+    background-size: 25px 25px;
+    border-radius: 15px;
+}
+
+.crosshair {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.crosshair::before,
+.crosshair::after {
+    content: "";
+    position: absolute;
+    background: white;
+    box-shadow: 0 0 8px #fff;
+}
+
+.crosshair::before {
+    width: 4px;
+    height: 40px;
+    left: 18px;
+}
+
+.crosshair::after {
+    width: 40px;
+    height: 4px;
+    top: 18px;
+}
+
+/* SPRINT */
+.sprint-box {
+    text-align: center;
+}
+
+.sprint-button {
+    padding: 18px 35px;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    background: linear-gradient(90deg,#ff0066,#7b00ff);
+    font-weight: 800;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 0 25px #7b00ff44;
+}
+
+.sprint-state {
+    margin-top: 15px;
+    color: #888;
+}
+
+/* ANTI CHEAT */
+.warning {
+    border-left: 4px solid #ffcc00;
+    background: #ffcc0010;
+    padding: 18px;
+    color: #bbb;
+    border-radius: 8px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid #ffffff12;
+    color: #666;
+}
+
+footer strong {
+    color: white;
 }
 
 /* MOBILE */
-@media(max-width:850px){
-    nav ul{
-        display:none;
-        position:absolute;
-        top:70px;
-        left:0;
-        width:100%;
-        padding:25px;
-        flex-direction:column;
-        background:#08080d;
-        text-align:center;
+@media(max-width:700px) {
+    nav {
+        padding: 15px 5%;
     }
 
-    nav ul.active{
-        display:flex;
+    nav div:last-child {
+        display: none;
     }
 
-    .menu{
-        display:block;
+    section {
+        padding: 65px 5%;
     }
 
-    .grid{
-        grid-template-columns:1fr;
+    .stats {
+        grid-template-columns: 1fr;
     }
 
-    .status-box{
-        grid-template-columns:1fr;
-    }
-
-    section{
-        padding:75px 5%;
-    }
-
-    .section-title h2{
-        font-size:32px;
-    }
-
-    .player{
-        grid-template-columns:45px 1fr 90px;
-        padding:15px;
+    .ip {
+        font-size: 17px;
     }
 }
 </style>
@@ -574,432 +472,399 @@ footer strong{
 
 <body>
 
-<!-- NAVBAR -->
+<!-- PARTICLES -->
+<script>
+for(let i=0;i<45;i++){
+    const p=document.createElement("div");
+    p.className="particle";
+    p.style.left=Math.random()*100+"%";
+    p.style.animationDelay=(Math.random()*8)+"s";
+    p.style.animationDuration=(5+Math.random()*8)+"s";
+    document.body.appendChild(p);
+}
+</script>
+
 <nav>
     <div class="logo">⚔ DINKAN SMP</div>
 
-    <div class="menu" onclick="toggleMenu()">☰</div>
-
-    <ul id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#status">Status</a></li>
-        <li><a href="#ranks">Ranks</a></li>
-        <li><a href="#rules">Rules</a></li>
-        <li><a href="#shop">Shop</a></li>
-        <li><a href="#leaderboard">Leaderboard</a></li>
-    </ul>
+    <div>
+        <a href="#home">Home</a>
+        <a href="#pvp">PvP</a>
+        <a href="#tools">Tools</a>
+        <a href="#rules">Anti-Cheat</a>
+    </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
     <div class="hero-content">
 
-        <div class="badge">
-            ⛏️ MINECRAFT SURVIVAL MULTIPLAYER
-        </div>
+        <div class="badge">⛏️ MINECRAFT PVP HUB</div>
 
         <h1>DINKAN SMP</h1>
 
         <p>
-            Build your empire. Explore a massive survival world.
-            Make friends, create your base and become part of the DINKAN SMP community.
+            A modern Minecraft PvP utility hub for players,
+            server owners and developers.
         </p>
 
         <div class="buttons">
-            <a class="btn btn-primary" href="https://discord.gg/6C3seSFYt" target="_blank">
-                💬 JOIN DISCORD
+            <a class="btn btn-primary"
+               href="https://discord.gg/6C3seSFYt"
+               target="_blank">
+                💬 Join Discord
             </a>
 
-            <a class="btn" href="#status">
-                🎮 SERVER STATUS
+            <a class="btn" href="#pvp">
+                ⚔️ PvP Tools
             </a>
-
-            <a class="btn" href="#shop">
-                🛒 SHOP
-            </a>
-        </div>
-
-        <div class="server-card">
-
-            <div class="server-title">
-                SERVER IP
-            </div>
-
-            <div class="ip" id="serverIP">
-                mc.hivemc.fun:25582
-            </div>
-
-            <div>
-                <span class="online-dot"></span>
-                <span class="online">SERVER ONLINE</span>
-            </div>
-
-            <div class="buttons">
-                <a href="#" class="btn" onclick="copyIP();return false;">
-                    📋 COPY IP
-                </a>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- STATUS -->
-<section id="status">
-    <div class="section-title">
-        <span>LIVE SERVER</span>
-        <h2>Server Status</h2>
-    </div>
-
-    <div class="status-box">
-
-        <div class="stat">
-            <strong class="online">● ONLINE</strong>
-            <span>Server Status</span>
-        </div>
-
-        <div class="stat">
-            <strong id="playerCount">--</strong>
-            <span>Players Online</span>
-        </div>
-
-        <div class="stat">
-            <strong>1.21+</strong>
-            <span>Minecraft Version</span>
         </div>
 
     </div>
 </section>
 
-<!-- FEATURES -->
+<!-- SERVER -->
 <section>
-    <div class="section-title">
-        <span>WHY DINKAN</span>
-        <h2>Server Features</h2>
+    <h2 class="section-title">SERVER STATUS</h2>
+
+    <div class="server-card">
+
+        <div class="status">
+            <span class="dot"></span>
+            ONLINE
+        </div>
+
+        <h2>DINKAN SMP</h2>
+
+        <div class="ip">
+            mc.hivemc.fun:25582
+        </div>
+
+        <button class="btn btn-primary" onclick="copyIP()">
+            📋 COPY IP
+        </button>
+
+        <p id="copyMessage" style="margin-top:15px;color:#00ff88;"></p>
+
     </div>
+</section>
+
+<!-- PVP TOOLS -->
+<section id="pvp">
+
+    <h2 class="section-title">⚔️ PVP HUD</h2>
+
+    <div class="pvp-panel">
+
+        <div class="stats">
+
+            <div class="stat">
+                <strong id="fps">60</strong>
+                <span>FPS</span>
+            </div>
+
+            <div class="stat">
+                <strong id="ping">42</strong>
+                <span>PING</span>
+            </div>
+
+            <div class="stat">
+                <strong id="cpsDisplay">0</strong>
+                <span>CPS</span>
+            </div>
+
+        </div>
+
+        <div class="keystrokes">
+
+            <div></div>
+
+            <div class="key" data-key="w">W</div>
+
+            <div></div>
+
+            <div class="key" data-key="a">A</div>
+            <div class="key" data-key="s">S</div>
+            <div class="key" data-key="d">D</div>
+
+            <div class="key" data-key="shift">SHIFT</div>
+            <div class="key" data-key="space">SPACE</div>
+
+        </div>
+
+        <div class="mouse">
+
+            <button id="clickButton">
+                🖱️ CLICK / CPS TEST
+            </button>
+
+            <div class="cps">
+                CPS: <span id="cps">0</span>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+
+    <h2 class="section-title">🧩 PLAYER TOOLS</h2>
 
     <div class="grid">
 
         <div class="card">
-            <div class="card-icon">🏡</div>
-            <h3>Survival SMP</h3>
+            <div class="icon">🖱️</div>
+            <h3>CPS Counter</h3>
             <p>
-                Build your own base, explore the world and create your own survival story.
+                Test your clicks per second with the browser-based
+                CPS counter.
             </p>
         </div>
 
         <div class="card">
-            <div class="card-icon">🛡️</div>
-            <h3>No Griefing</h3>
+            <div class="icon">🎯</div>
+            <h3>Crosshair</h3>
             <p>
-                Your builds are protected. Destroying or damaging another player's build is not allowed.
+                Preview a simple PvP crosshair directly in your browser.
             </p>
         </div>
 
         <div class="card">
-            <div class="card-icon">⚔️</div>
-            <h3>No PvP</h3>
+            <div class="icon">🏃</div>
+            <h3>Sprint Toggle</h3>
             <p>
-                DINKAN SMP is designed for peaceful survival. Do not attack or kill other players.
+                Demonstration sprint-toggle interface for your PvP HUD.
             </p>
         </div>
 
         <div class="card">
-            <div class="card-icon">💰</div>
-            <h3>Economy</h3>
+            <div class="icon">📊</div>
+            <h3>Performance</h3>
             <p>
-                Earn money, trade with players and build your own in-game economy.
-            </p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">🏆</div>
-            <h3>Leaderboard</h3>
-            <p>
-                Compete for the top positions and become one of the most active players.
-            </p>
-        </div>
-
-        <div class="card">
-            <div class="card-icon">💎</div>
-            <h3>Ranks</h3>
-            <p>
-                Unlock special ranks and show your status throughout the DINKAN SMP network.
+                Browser demo panel for FPS and ping-style HUD information.
             </p>
         </div>
 
     </div>
+
 </section>
 
-<!-- RANKS -->
-<section id="ranks">
-    <div class="section-title">
-        <span>DINKAN NETWORK</span>
-        <h2>Server Ranks</h2>
-    </div>
-
-    <div class="grid">
-
-        <div class="card rank">
-            <div class="card-icon">👑</div>
-            <div class="rank-name owner">OWNER</div>
-            <p>Server Owner</p>
-        </div>
-
-        <div class="card rank">
-            <div class="card-icon">💻</div>
-            <div class="rank-name developer">DEVELOPER</div>
-            <p>Development Team</p>
-        </div>
-
-        <div class="card rank">
-            <div class="card-icon">🛡️</div>
-            <div class="rank-name admin">ADMIN</div>
-            <p>Server Administration</p>
-        </div>
-
-        <div class="card rank">
-            <div class="card-icon">🔨</div>
-            <div class="rank-name mod">MOD</div>
-            <p>Moderation Team</p>
-        </div>
-
-        <div class="card rank">
-            <div class="card-icon">🔧</div>
-            <div class="rank-name helper">HELPER</div>
-            <p>Community Helper</p>
-        </div>
-
-        <div class="card rank">
-            <div class="card-icon">💎</div>
-            <div class="rank-name vip">VIP</div>
-            <p>Premium Player</p>
-        </div>
-
-    </div>
-</section>
-
-<!-- RULES -->
-<section id="rules">
-    <div class="section-title">
-        <span>PLAY FAIR</span>
-        <h2>DINKAN SMP Rules</h2>
-    </div>
-
-    <div class="rules">
-
-        <div class="rule">
-            <div class="rule-icon">🏡</div>
-            <div>
-                <h3>NO GRIEFING</h3>
-                <p>Do not destroy, burn or damage another player's builds.</p>
-            </div>
-        </div>
-
-        <div class="rule">
-            <div class="rule-icon">⚔️</div>
-            <div>
-                <h3>NO PvP</h3>
-                <p>Do not attack, kill, trap or intentionally damage other players.</p>
-            </div>
-        </div>
-
-        <div class="rule">
-            <div class="rule-icon">💰</div>
-            <div>
-                <h3>NO STEALING</h3>
-                <p>Do not take another player's items, blocks, pets or resources.</p>
-            </div>
-        </div>
-
-        <div class="rule">
-            <div class="rule-icon">🚫</div>
-            <div>
-                <h3>NO CHEATING</h3>
-                <p>Hacks, unfair clients, exploits and X-Ray are not allowed.</p>
-            </div>
-        </div>
-
-        <div class="rule">
-            <div class="rule-icon">🤝</div>
-            <div>
-                <h3>RESPECT PLAYERS</h3>
-                <p>Keep the community friendly and respectful.</p>
-            </div>
-        </div>
-
-        <div class="rule">
-            <div class="rule-icon">📢</div>
-            <div>
-                <h3>NO SPAM</h3>
-                <p>Do not spam chat, commands, mentions or advertisements.</p>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<!-- SHOP -->
-<section id="shop">
-    <div class="section-title">
-        <span>DINKAN STORE</span>
-        <h2>Premium Shop</h2>
-    </div>
-
-    <div class="grid">
-
-        <div class="card shop-card">
-            <div class="card-icon">💎</div>
-            <h3>VIP Rank</h3>
-            <div class="price">₹99</div>
-            <p>Premium VIP rank for your Minecraft account.</p>
-            <br>
-            <a class="btn btn-primary" href="#">
-                BUY NOW
-            </a>
-        </div>
-
-        <div class="card shop-card">
-            <div class="card-icon">👑</div>
-            <h3>MVP Rank</h3>
-            <div class="price">₹199</div>
-            <p>Enhanced premium rank with extra perks.</p>
-            <br>
-            <a class="btn btn-primary" href="#">
-                BUY NOW
-            </a>
-        </div>
-
-        <div class="card shop-card">
-            <div class="card-icon">📦</div>
-            <h3>Crate Keys</h3>
-            <div class="price">₹49</div>
-            <p>Open special crates and unlock rewards.</p>
-            <br>
-            <a class="btn btn-primary" href="#">
-                BUY NOW
-            </a>
-        </div>
-
-    </div>
-</section>
-
-<!-- LEADERBOARD -->
-<section id="leaderboard">
-    <div class="section-title">
-        <span>TOP PLAYERS</span>
-        <h2>Leaderboard</h2>
-    </div>
-
-    <div class="leaderboard">
-
-        <div class="player">
-            <div class="position">#1</div>
-            <div class="player-name">DinkanPlayer</div>
-            <div class="player-value">12,450 XP</div>
-        </div>
-
-        <div class="player">
-            <div class="position">#2</div>
-            <div class="player-name">ProPlayer</div>
-            <div class="player-value">10,820 XP</div>
-        </div>
-
-        <div class="player">
-            <div class="position">#3</div>
-            <div class="player-name">MinecraftKing</div>
-            <div class="player-value">9,750 XP</div>
-        </div>
-
-        <div class="player">
-            <div class="position">#4</div>
-            <div class="player-name">Shadow</div>
-            <div class="player-value">8,430 XP</div>
-        </div>
-
-        <div class="player">
-            <div class="position">#5</div>
-            <div class="player-name">DINKAN_OG</div>
-            <div class="player-value">7,920 XP</div>
-        </div>
-
-    </div>
-</section>
-
-<!-- DISCORD CTA -->
+<!-- CROSSHAIR -->
 <section>
-    <div class="cta">
 
-        <h2>JOIN DINKAN SMP</h2>
+    <h2 class="section-title">🎯 CROSSHAIR PREVIEW</h2>
 
-        <p>
-            Join our Discord community, meet other players and get server updates.
+    <div class="server-card">
+
+        <div class="crosshair-area">
+            <div class="crosshair"></div>
+        </div>
+
+        <p style="margin-top:20px;color:#888;">
+            Simple crosshair preview — customize the CSS to create your own style.
         </p>
 
-        <a
-            class="btn btn-primary"
-            href="https://discord.gg/6C3seSFYt"
-            target="_blank">
-            💬 discord.gg/6C3seSFYt
-        </a>
-
     </div>
+
 </section>
 
-<!-- FOOTER -->
-<footer>
-    <p>
-        © 2026 <strong>DINKAN SMP</strong>. All rights reserved.
-    </p>
+<!-- SPRINT -->
+<section>
 
-    <p style="margin-top:8px">
-        🏡 No Griefing &nbsp; • &nbsp;
-        ⚔️ No PvP &nbsp; • &nbsp;
-        💜 Community SMP
-    </p>
+    <h2 class="section-title">🏃 SPRINT TOGGLE</h2>
+
+    <div class="server-card sprint-box">
+
+        <button class="sprint-button" onclick="toggleSprint()">
+            TOGGLE SPRINT
+        </button>
+
+        <div class="sprint-state" id="sprintState">
+            Sprint: OFF
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ANTI CHEAT -->
+<section id="rules">
+
+    <h2 class="section-title">🛡️ ANTI-CHEAT</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <div class="icon">🛡️</div>
+            <h3>Fair Play</h3>
+            <p>
+                Keep competitive gameplay fair by detecting prohibited
+                client behavior on the server.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🔍</div>
+            <h3>Detection</h3>
+            <p>
+                Server-side anti-cheat plugins can monitor suspicious
+                movement and combat patterns.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🚫</div>
+            <h3>No Bypass</h3>
+            <p>
+                This website does not provide cheat clients,
+                exploit code or anti-cheat bypasses.
+            </p>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="warning">
+        ⚠️ <strong>Server Owner Tip:</strong>
+        Use a reputable anti-cheat plugin and configure it for your
+        Minecraft version. Test detections carefully before enabling
+        aggressive punishments.
+    </div>
+
+</section>
+
+<footer>
+    <strong>⚔ DINKAN SMP</strong>
+    <br>
+    Minecraft PvP Hub
+    <br><br>
+    © 2026 DINKAN SMP
 </footer>
 
 <script>
 
-/* COPY IP */
+/* COPY SERVER IP */
 function copyIP(){
-    const ip = document.getElementById("serverIP").innerText;
 
-    navigator.clipboard.writeText(ip).then(()=>{
-        alert("✅ Server IP copied: " + ip);
+    navigator.clipboard.writeText("mc.hivemc.fun:25582");
+
+    document.getElementById("copyMessage").textContent =
+        "✓ Server IP copied!";
+
+    setTimeout(()=>{
+        document.getElementById("copyMessage").textContent="";
+    },2000);
+}
+
+
+/* CPS */
+let clicks = [];
+
+const clickButton = document.getElementById("clickButton");
+const cps = document.getElementById("cps");
+const cpsDisplay = document.getElementById("cpsDisplay");
+
+clickButton.addEventListener("click",()=>{
+
+    const now = Date.now();
+
+    clicks.push(now);
+
+    clicks = clicks.filter(t => now - t <= 1000);
+
+    cps.textContent = clicks.length;
+    cpsDisplay.textContent = clicks.length;
+
+});
+
+
+/* KEYSTROKES */
+const keys = document.querySelectorAll(".key");
+
+document.addEventListener("keydown",(e)=>{
+
+    let key = e.key.toLowerCase();
+
+    if(key === " ") key = "space";
+
+    keys.forEach(k=>{
+
+        if(k.dataset.key === key){
+            k.classList.add("active");
+        }
+
     });
+
+});
+
+document.addEventListener("keyup",(e)=>{
+
+    let key = e.key.toLowerCase();
+
+    if(key === " ") key = "space";
+
+    keys.forEach(k=>{
+
+        if(k.dataset.key === key){
+            k.classList.remove("active");
+        }
+
+    });
+
+});
+
+
+/* SPRINT */
+let sprint = false;
+
+function toggleSprint(){
+
+    sprint = !sprint;
+
+    const state = document.getElementById("sprintState");
+
+    state.textContent =
+        "Sprint: " + (sprint ? "ON" : "OFF");
+
 }
 
-/* MOBILE MENU */
-function toggleMenu(){
-    document.getElementById("navLinks").classList.toggle("active");
-}
 
-/* DEMO PLAYER COUNT */
-let count = 17;
-
+/* DEMO FPS */
 setInterval(()=>{
-    const change = Math.floor(Math.random()*5)-2;
-    count = Math.max(0,count+change);
 
-    document.getElementById("playerCount").innerText = count;
-},5000);
+    const fps =
+        Math.floor(55 + Math.random()*10);
 
-/* PARTICLES */
-for(let i=0;i<45;i++){
+    document.getElementById("fps").textContent = fps;
 
-    const p=document.createElement("div");
+},1000);
 
-    p.className="particle";
 
-    p.style.left=Math.random()*100+"%";
-    p.style.animationDuration=(8+Math.random()*15)+"s";
-    p.style.animationDelay=(-Math.random()*20)+"s";
-    p.style.width=(2+Math.random()*4)+"px";
-    p.style.height=p.style.width;
+/* DEMO PING */
+setInterval(()=>{
 
-    document.body.appendChild(p);
-}
+    const ping =
+        Math.floor(30 + Math.random()*35);
+
+    document.getElementById("ping").textContent = ping;
+
+},1500);
+
+
+/* UPDATE CPS */
+setInterval(()=>{
+
+    const now = Date.now();
+
+    clicks = clicks.filter(t => now - t <= 1000);
+
+    cps.textContent = clicks.length;
+    cpsDisplay.textContent = clicks.length;
+
+},100);
 
 </script>
 
